@@ -10,10 +10,36 @@ class Article(models.Model):
         return self.title
 
 class NoteGroup(models.Model):
+    slug = models.SlugField(blank=True, null=True)
+
     group_name = models.CharField(max_length=120)
+
+    def save(self, *args, **kwargs):
+            original_slug = slugify(self.title)
+            queryset = NoteGroup.objects.all().filter(slug__iexact=original_slug).count()
+
+            count = 1
+            slug = original_slug
+            while(queryset):
+                slug = original_slug + '-' + str(count)
+                count += 1
+                queryset = NoteGroup.objects.all().filter(slug__iexact=slug).count()
+
+            self.slug = slug
+
+            # if self.featured:
+            #     try:
+            #         temp = NoteGroup.objects.get(featured=True)
+            #         if self != temp:
+            #             temp.featured = False
+            #             temp.save()
+            #     except NoteGroup.DoesNotExist:
+            #         pass
+            super(NoteGroup, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.group_name
+
 
 class TextNote(models.Model):
     note_group = models.ForeignKey(NoteGroup, null=True, blank=True, on_delete=models.SET_NULL)
@@ -23,11 +49,22 @@ class TextNote(models.Model):
     content = models.TextField()
 
     def __str__(self):
-        return (str(self.date_created) +'_'+ self.title)
+        return (str(self.date_created) +'_text_'+ self.title)
 
-# class NoteGroup(models.model):
-#     name = models.CharField(max_length =120)
-#
+class ListNote(models.Model):
+    note_group = models.ForeignKey(NoteGroup, null=True, blank=True, on_delete=models.SET_NULL)
+    title = models.CharField(max_length = 120)
+    archived = models.BooleanField(default=False)
+    date_created = models.DateField(auto_now=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return (str(self.date_created) +'_list_'+ self.title)
+
+class ListNoteEntry(models.Model):
+    parent_list = models.ForeignKey(ListNote, on_delete=models.CASCADE)
+    entry_text = models.TextField(null=True)
+    completed = models.BooleanField(default=False)
 
 # class ListNote(models.Model):
 #     grouping = models.ForeignKey(NoteGroup)
@@ -39,19 +76,19 @@ class TextNote(models.Model):
 #     def __str__(self):
 #         return self.title
 
-from django.db import models
-from django.contrib.auth.models import User
-from django.urls import reverse
-from django.template.defaultfilters import slugify
-from datetime import datetime
+# from django.db import models
+# from django.contrib.auth.models import User
+# from django.urls import reverse
+# from django.template.defaultfilters import slugify
+# from datetime import datetime
 
 # Create your models here.
 
-class NoteGroup(models.Model):
-    group_name = models.CharField(max_length=200, blank=True, null=True)
-
-    def __str__(self):
-        return(self.group_name)
+# class NoteGroup(models.Model):
+#     group_name = models.CharField(max_length=200, blank=True, null=True)
+#
+#     def __str__(self):
+#         return(self.group_name)
 
 # class BaseNote(models.Model):
 #     slug = models.SlugField(blank=True, null=True)
@@ -92,7 +129,3 @@ class NoteGroup(models.Model):
 # class ListNote(BaseNote):
 #     pass
 #
-# class ListNoteEntry(models.Model):
-#     parent_list = models.ForeignKey(ListNote, on_delete=models.CASCADE)
-#     entry_text = models.TextField(null=True)
-#     completed = models.BooleanField(default=False)
