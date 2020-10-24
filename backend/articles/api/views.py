@@ -12,7 +12,7 @@ from .serializers import (
     MemeTextSerializer)
 
 from rest_framework import viewsets
-
+import random
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
@@ -29,17 +29,19 @@ class TextNoteViewSet(viewsets.ModelViewSet):
     serializer_class = TextNoteSerializer
     queryset = TextNote.objects.all()
 
-def meme_text(text):
-    output_text = text + text + str(len(text))
-    return(output_text)
-
-
 from rest_framework.response import Response
 from rest_framework import serializers, views
 
 def mememify_text(input_text):
-    output_text = ("ThIs TeXt is MemEd " +2*input_text)
-    return(output_text)
+    new_str=''
+    for char in input_text:
+        random_number = random.randint(1,2)
+        if random_number ==1:
+            char=char.lower()
+        if random_number==2:
+            char=char.upper()
+        new_str = new_str+char
+    return(new_str)
 #https://stackoverflow.com/questions/27786308/django-and-rest-api-to-serve-calculation-based-requests
 class MemeTextView(views.APIView):
 

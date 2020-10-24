@@ -6,16 +6,16 @@ const { TextArea } = Input;
 
 class MemeTextGen extends Component {
   HandleMemeGenSubmit = (event)=>{
+    event.preventDefault()
     const textToMeme = event.target.elements.textToMeme.value;
     console.log(textToMeme);
-    axios.post('http://127.0.0.1:8000/api/meme_text_two', {
+    axios.get('http://127.0.0.1:8000/api/meme_text'+'?textToMeme='+textToMeme, {
       textToMeme: textToMeme
     })
-      .then(res=>console.log(res))
+      .then(res=>alert(res.data.complex_result))
       .catch(err=>console.log(err));
-      this.forceUpdate();
-      this.props.history.push('/');
-      this.forceUpdate();
+  
+
   }
 
 render(){
