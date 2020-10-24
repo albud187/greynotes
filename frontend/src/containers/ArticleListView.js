@@ -27,7 +27,7 @@ class ArticleList extends React.Component{
     return(
       <div>
       <h1> ArticleListView.js</h1>
-      <h2><Link to="/create/">Create an  article</Link></h2>
+      <h2><Link to="/create-article/">Create an  article</Link></h2>
 
         <Articles data ={this.state.articles}/>
 

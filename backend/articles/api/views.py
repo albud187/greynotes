@@ -3,6 +3,9 @@ from .serializers import ArticleSerializer, NoteGroupSerializer, TextNoteSeriali
 
 from rest_framework import viewsets
 
+from django.shortcuts import render
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
 
 class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
@@ -15,6 +18,17 @@ class NoteGroupViewSet(viewsets.ModelViewSet):
 class TextNoteViewSet(viewsets.ModelViewSet):
     serializer_class = TextNoteSerializer
     queryset = TextNote.objects.all()
+
+def meme_text(text):
+    output_text = text + text + str(len(text))
+    return(output_text)
+    
+message = "test_message"
+def meme_text_output(request):
+    # if request.GET.get('textToMeme'):
+    #     message = meme_text(request.GET['textToMeme'])
+    #
+    return JsonResponse({'meme_text_output':message})
 
 # from rest_framework.generics import (
 #     ListAPIView,

@@ -20,6 +20,8 @@ const CustomLayout = (props)=>{
           <Breadcrumb.Item><Link to="/">Text Notes</Link></Breadcrumb.Item>
           <Breadcrumb.Item><Link to="/">List Notes</Link></Breadcrumb.Item>
           <Breadcrumb.Item><Link to="/">Note Groups</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to="/meme-text-gen/">Meme Text Generator</Link></Breadcrumb.Item>
+
         </Breadcrumb>
         <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
           {props.children}
