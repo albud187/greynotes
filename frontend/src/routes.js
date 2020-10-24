@@ -1,0 +1,19 @@
+import React from 'react';
+import {Route} from 'react-router-dom';
+import ArticleList from './containers/ArticleListView.js'
+import ArticleDetail from './containers/ArticleDetailView.js'
+import CustomForm from './components/Form.js'
+import TextNoteCreate from './forms/TextNoteCreate.js'
+import Placeholder from './components/placeholder.js'
+const BaseRouter =() => (
+  <div>
+    <Route exact path='/' component={ArticleList}/>
+    <Route exact path ='/create/' component ={TextNoteCreate} />
+    <Route exact path='/TextNote/:articleID' component={ArticleDetail}/>
+    <Route exact path='/placeholder' component = {Placeholder} />
+  </div>
+)
+
+
+
+export default BaseRouter
