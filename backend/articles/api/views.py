@@ -1,5 +1,5 @@
-from articles.models import Article
-from .serializers import ArticleSerializer
+from articles.models import Article, NoteGroup, TextNote
+from .serializers import ArticleSerializer, NoteGroupSerializer, TextNoteSerializer
 
 from rest_framework import viewsets
 
@@ -7,6 +7,14 @@ from rest_framework import viewsets
 class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
+
+class NoteGroupViewSet(viewsets.ModelViewSet):
+    serializer_class = NoteGroupSerializer
+    queryset = NoteGroup.objects.all()
+
+class TextNoteViewSet(viewsets.ModelViewSet):
+    serializer_class = TextNoteSerializer
+    queryset = TextNote.objects.all()
 
 # from rest_framework.generics import (
 #     ListAPIView,

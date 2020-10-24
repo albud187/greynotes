@@ -11,14 +11,14 @@ class CustomForm extends React.Component {
     console.log(title,content);
 
     switch(requestType){
-      case 'post': return axios.post('http://127.0.0.1:8000/api/articles/', {
+      case 'post': return axios.post('http://127.0.0.1:8000/api/', {
         title: title,
         content: content
       })
       .then(res=>console.log(res))
       .catch(err=>console.log(err));
 
-      case 'put': return axios.put(`http://127.0.0.1:8000/api/articles/${articleID}/`, {
+      case 'put': return axios.put(`http://127.0.0.1:8000/api/${articleID}/`, {
         title: title,
         content: content
       })

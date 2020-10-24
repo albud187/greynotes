@@ -7,9 +7,9 @@ import TextNoteCreate from './forms/TextNoteCreate.js'
 import Placeholder from './components/placeholder.js'
 const BaseRouter =() => (
   <div>
-    <Route exact path='/' component={ArticleList}/>
-    <Route exact path ='/create/' component ={TextNoteCreate} />
-    <Route exact path='/TextNote/:articleID' component={ArticleDetail}/>
+    <Route exact path='/article-list/' component={ArticleList}/>
+    <Route exact path ='/create-article/' component ={TextNoteCreate} />
+    <Route exact path='/article/:articleID' component={ArticleDetail}/>
     <Route exact path='/placeholder' component = {Placeholder} />
   </div>
 )

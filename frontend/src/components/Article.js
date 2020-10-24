@@ -35,10 +35,10 @@ const Articles =(props)=>{
 
       >
         <List.Item.Meta
-          title={<a href={"/TextNote/"+`${item.id}`}>{item.id} - {item.title}</a>}
+          title={<a href={"/article/"+`${item.id}`}>{item.id} - {item.title}</a>}
           description={item.description}
         />
-        
+
       </List.Item>
     )}
   />

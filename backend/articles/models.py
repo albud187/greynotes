@@ -1,5 +1,8 @@
 from django.db import models
-
+from django.contrib.auth.models import User
+from django.urls import reverse
+from django.template.defaultfilters import slugify
+from datetime import datetime
 # Create your models here.
 
 class Article(models.Model):
@@ -15,7 +18,7 @@ class NoteGroup(models.Model):
     group_name = models.CharField(max_length=120)
 
     def save(self, *args, **kwargs):
-            original_slug = slugify(self.title)
+            original_slug = slugify(self.group_name)
             queryset = NoteGroup.objects.all().filter(slug__iexact=original_slug).count()
 
             count = 1
@@ -79,10 +82,7 @@ class ListNoteEntry(models.Model):
 #         return self.title
 
 # from django.db import models
-# from django.contrib.auth.models import User
-# from django.urls import reverse
-# from django.template.defaultfilters import slugify
-# from datetime import datetime
+
 
 # Create your models here.
 

@@ -36,7 +36,7 @@ class ArticleDetail extends React.Component{
       <div>
       <h1>ArticleDetailView.js</h1>
 
-      <CustomForm
+      <TextNoteDetailUpdate
         requestType="put"
         articleID={this.props.match.params.articleID}
         articleContent={this.state.article.content}

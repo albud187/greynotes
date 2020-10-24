@@ -9,7 +9,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 class NoteGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = NoteGroup
-        fields = ('group_name')
+        fields = '__all__'
 
 class TextNoteSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,8 +1,11 @@
-from articles.api.views import ArticleViewSet
+from articles.api.views import ArticleViewSet, NoteGroupViewSet, TextNoteViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register(r'', ArticleViewSet, basename='articles')
+router.register('articles', ArticleViewSet, basename='articles')
+router.register('NoteGroups', NoteGroupViewSet, basename='NoteGroups')
+router.register('TextNotes', TextNoteViewSet, basename='TextNotes')
+
 urlpatterns = router.urls
 #
 # from django.urls import path, include
