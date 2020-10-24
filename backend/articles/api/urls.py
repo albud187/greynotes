@@ -2,7 +2,7 @@ from articles.api.views import (
     ArticleViewSet,
     NoteGroupViewSet,
     TextNoteViewSet,
-    meme_text_output
+    MemeTextView
 )
 from rest_framework.routers import DefaultRouter
 from django.urls import path
@@ -12,7 +12,9 @@ router.register('articles', ArticleViewSet, basename='articles')
 router.register('NoteGroups', NoteGroupViewSet, basename='NoteGroups')
 router.register('TextNotes', TextNoteViewSet, basename='TextNotes')
 
-function_views=[path('meme_text', meme_text_output, name='meme_text')]
+function_views=[
+    path('meme_text', MemeTextView.as_view(), name='meme_text')
+]
 urlpatterns = router.urls + function_views
 
 #

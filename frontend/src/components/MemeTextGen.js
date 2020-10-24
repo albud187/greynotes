@@ -6,11 +6,10 @@ const { TextArea } = Input;
 
 class MemeTextGen extends Component {
   HandleMemeGenSubmit = (event)=>{
-    const title = event.target.elements.title.value;
-    const content = event.target.elements.content.value;
-    console.log(title,content);
-    axios.post('http://127.0.0.1:8000/api/', {
-      content: content
+    const textToMeme = event.target.elements.textToMeme.value;
+    console.log(textToMeme);
+    axios.post('http://127.0.0.1:8000/api/meme_text_two', {
+      textToMeme: textToMeme
     })
       .then(res=>console.log(res))
       .catch(err=>console.log(err));
@@ -27,7 +26,7 @@ render(){
         )}>
 
           <Form.Item label="content">
-              <TextArea rows={9} name="content" placeholder="TEXT TO MEMEMIFY" />
+              <TextArea rows={9} name="textToMeme" placeholder="TEXT TO MEMEMIFY" />
           </Form.Item>
           <Form.Item>
             <button type="submit">Submit</button>

@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from articles.models import Article, TextNote, NoteGroup
+
+from articles.models import (
+    Article,
+    NoteGroup,
+    TextNote,
+    ListNote,
+    ListNoteEntry)
 
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +21,6 @@ class TextNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = TextNote
         fields =('id', 'title', 'content', 'note_group')
+
+class MemeTextSerializer(serializers.Serializer):
+    textToMeme = serializers.CharField()

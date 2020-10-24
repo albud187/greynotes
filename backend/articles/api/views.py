@@ -1,5 +1,15 @@
-from articles.models import Article, NoteGroup, TextNote
-from .serializers import ArticleSerializer, NoteGroupSerializer, TextNoteSerializer
+from articles.models import (
+    Article,
+    NoteGroup,
+    TextNote,
+    ListNote,
+    ListNoteEntry)
+
+from .serializers import (
+    ArticleSerializer,
+    NoteGroupSerializer,
+    TextNoteSerializer,
+    MemeTextSerializer)
 
 from rest_framework import viewsets
 
@@ -22,13 +32,33 @@ class TextNoteViewSet(viewsets.ModelViewSet):
 def meme_text(text):
     output_text = text + text + str(len(text))
     return(output_text)
-    
-message = "test_message"
-def meme_text_output(request):
-    # if request.GET.get('textToMeme'):
-    #     message = meme_text(request.GET['textToMeme'])
-    #
-    return JsonResponse({'meme_text_output':message})
+
+
+from rest_framework.response import Response
+from rest_framework import serializers, views
+
+def mememify_text(input_text):
+    output_text = ("ThIs TeXt is MemEd " +2*input_text)
+    return(output_text)
+#https://stackoverflow.com/questions/27786308/django-and-rest-api-to-serve-calculation-based-requests
+class MemeTextView(views.APIView):
+
+    def get(self, request):
+        # Validate the incoming input (provided through query parameters)
+        serializer = MemeTextSerializer(data=request.query_params)
+        serializer.is_valid(raise_exception=True)
+
+        # Get the model input
+        data = serializer.validated_data
+        textToMeme = data["textToMeme"]
+
+        # Perform the complex calculations
+        memed_text = mememify_text(textToMeme)
+
+        # Return it in your custom format
+        return Response({
+            "complex_result": memed_text,
+        })
 
 # from rest_framework.generics import (
 #     ListAPIView,
