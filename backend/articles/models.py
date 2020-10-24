@@ -56,7 +56,6 @@ class ListNote(models.Model):
     title = models.CharField(max_length = 120)
     archived = models.BooleanField(default=False)
     date_created = models.DateField(auto_now=True)
-    content = models.TextField()
 
     def __str__(self):
         return (str(self.date_created) +'_list_'+ self.title)
@@ -65,6 +64,9 @@ class ListNoteEntry(models.Model):
     parent_list = models.ForeignKey(ListNote, on_delete=models.CASCADE)
     entry_text = models.TextField(null=True)
     completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return(str(self.parent_list)+'_' +str(self.id))
 
 # class ListNote(models.Model):
 #     grouping = models.ForeignKey(NoteGroup)
