@@ -7,26 +7,25 @@ import TextNoteDetailUpdate from '../forms/TextNoteDetailUpdate.js'
 class TextNoteDetail extends React.Component{
 
   state ={
-    TextNote: {}
+    textnote: {}
 
   }
 
   componentDidMount() {
-      const TextNoteID = this.props.match.params.TextNoteID;
-      axios.get(`http://127.0.0.1:8000/api/TextNotes/${TextNoteID}/`).then(res => {
+      const textnoteID = this.props.match.params.textnoteID;
+      axios.get(`http://127.0.0.1:8000/api/TextNotes/${textnoteID}/`).then(res => {
         this.setState({
-          TextNoteID: res.data.id
-
+          textnote: res.data
         });
-        console.log(this.state.TextNote.title)
+        console.log(this.state.textnote.title)
       });
       console.log('test')
     }
 
 
     handleDelete = (event) => {
-      const TextNoteID = this.props.match.params.TextNoteID;
-      axios.delete(`http://127.0.0.1:8000/api/${TextNoteID}/`)
+      const textnoteID = this.props.match.params.textnoteID;
+      axios.delete(`http://127.0.0.1:8000/api/textnotes/${textnoteID}/`)
         this.props.history.push('/');
         this.forceUpdate();
     }
@@ -34,13 +33,13 @@ class TextNoteDetail extends React.Component{
   render(){
     return(
       <div>
-      <h1>TextNoteDetailView.js</h1>
+      <h1>textnoteDetailView.js</h1>
 
       <TextNoteDetailUpdate
         requestType="put"
-        TextNoteID={this.props.match.params.TextNoteID}
-        TextNoteContent={this.state.TextNote.content}
-        TextNoteTitle = {this.state.TextNote.title}/>
+        textnoteID={this.props.match.params.textnoteID}
+        textnoteContent={this.state.textnote.content}
+        textnoteTitle = {this.state.textnote.title}/>
 
       <form onSubmit={this.handleDelete}>
         <Button type='danger' htmlType='submit'>Delete</Button>

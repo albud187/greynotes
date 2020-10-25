@@ -23,11 +23,7 @@ const Articles =(props)=>{
       pageSize: 50,
     }}
     dataSource={props.data}
-    footer={
-      <div>
-        <b>ant design</b> footer part
-      </div>
-    }
+
     renderItem={item => (
       <List.Item
         key={item.title}

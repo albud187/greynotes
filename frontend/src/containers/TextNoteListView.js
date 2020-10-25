@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios';
 
 import TextNotes from '../components/TextNotes.js'
-import Articles from '../components/Article.js'
 import CustomForm from '../components/Form.js'
 import {Link} from 'react-router-dom'
 class ArticleList extends React.Component{

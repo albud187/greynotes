@@ -1,5 +1,4 @@
 import React from 'react'
-import Articles from '../components/Article.js'
 import axios from 'axios';
 import {Button, Card} from 'antd'
 import CustomForm from '../components/Form'
@@ -26,7 +25,7 @@ class ArticleDetail extends React.Component{
 
     handleDelete = (event) => {
       const articleID = this.props.match.params.articleID;
-      axios.delete(`http://127.0.0.1:8000/api/${articleID}/`)
+      axios.delete(`http://127.0.0.1:8000/api/articles/${articleID}/`)
         this.props.history.push('/');
         this.forceUpdate();
     }
