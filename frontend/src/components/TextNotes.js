@@ -2,6 +2,8 @@ import React from 'react';
 
 import { List, Avatar, Space } from 'antd';
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import { Row, Col, Divider } from 'antd';
+import { Card } from 'antd';
 
 
 const IconText = ({ icon, text }) => (
@@ -16,12 +18,7 @@ const TextNotes =(props)=>{
   <List
     itemLayout="vertical"
     size="large"
-    pagination={{
-      onChange: page => {
-        console.log(page);
-      },
-      pageSize: 50,
-    }}
+
     dataSource={props.data}
 
     renderItem={item => (
