@@ -9,7 +9,7 @@ import MemeTextGen from './components/MemeTextGen.js'
 import TextNoteListView from './containers/TextNoteListView.js'
 import TextNoteCreate from './forms/TextNoteCreate.js'
 import TextNoteDetailUpdate from './forms/TextNoteDetailUpdate.js'
-
+import TextNoteDetailView from './containers/TextNoteDetailView.js'
 const BaseRouter =() => (
   <div>
     <Route exact path='/article-list/' component={ArticleList}/>
@@ -17,10 +17,10 @@ const BaseRouter =() => (
     <Route exact path='/article/:articleID' component={ArticleDetail}/>
     <Route exact path='/meme-text-gen/' component = {MemeTextGen} />
     <Route exact path='/placeholder' component = {Placeholder} />
-    
+
     <Route exact path='/text_note_list' component = {TextNoteListView} />
     <Route exact path='/create_note' component = {TextNoteCreate} />
-    <Route exact path='/text_note/:noteID' component = {TextNoteDetailUpdate} />
+    <Route exact path='/text_note/:noteID' component = {TextNoteDetailView} />
 
 
 

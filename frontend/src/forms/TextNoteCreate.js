@@ -9,7 +9,7 @@ class TextNoteCreate extends React.Component {
     const title = event.target.elements.title.value;
     const content = event.target.elements.content.value;
     console.log(title,content);
-    axios.post('http://127.0.0.1:8000/api/', {
+    axios.post('http://127.0.0.1:8000/api/TextNotes/', {
       title: title,
       content: content
     })

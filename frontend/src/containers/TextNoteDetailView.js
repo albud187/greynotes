@@ -1,32 +1,32 @@
 import React from 'react'
-import Articles from '../components/Article.js'
 import axios from 'axios';
 import {Button, Card} from 'antd'
 import CustomForm from '../components/Form'
 import TextNoteDetailUpdate from '../forms/TextNoteDetailUpdate.js'
 
-class ArticleDetail extends React.Component{
+class TextNoteDetail extends React.Component{
 
   state ={
-    article: {}
+    TextNote: {}
 
   }
 
   componentDidMount() {
-      const articleID = this.props.match.params.articleID;
-      axios.get(`http://127.0.0.1:8000/api/${articleID}/`).then(res => {
+      const TextNoteID = this.props.match.params.TextNoteID;
+      axios.get(`http://127.0.0.1:8000/api/TextNotes/${TextNoteID}/`).then(res => {
         this.setState({
-          article: res.data
+          TextNoteID: res.data.id
+
         });
-        console.log(this.state.article.title)
+        console.log(this.state.TextNote.title)
       });
       console.log('test')
     }
 
 
     handleDelete = (event) => {
-      const articleID = this.props.match.params.articleID;
-      axios.delete(`http://127.0.0.1:8000/api/${articleID}/`)
+      const TextNoteID = this.props.match.params.TextNoteID;
+      axios.delete(`http://127.0.0.1:8000/api/${TextNoteID}/`)
         this.props.history.push('/');
         this.forceUpdate();
     }
@@ -34,13 +34,13 @@ class ArticleDetail extends React.Component{
   render(){
     return(
       <div>
-      <h1>ArticleDetailView.js</h1>
+      <h1>TextNoteDetailView.js</h1>
 
       <TextNoteDetailUpdate
         requestType="put"
-        articleID={this.props.match.params.articleID}
-        articleContent={this.state.article.content}
-        articleTitle = {this.state.article.title}/>
+        TextNoteID={this.props.match.params.TextNoteID}
+        TextNoteContent={this.state.TextNote.content}
+        TextNoteTitle = {this.state.TextNote.title}/>
 
       <form onSubmit={this.handleDelete}>
         <Button type='danger' htmlType='submit'>Delete</Button>
@@ -56,4 +56,4 @@ class ArticleDetail extends React.Component{
   }
 }
 
-export default ArticleDetail
+export default TextNoteDetail
