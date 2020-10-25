@@ -23,6 +23,7 @@ class TextNoteCreate extends React.Component {
 render(){
   return (
       <div>
+      <h1>TextNoteCreate.js</h1>
         <form onSubmit={(event)=>this.handleFormSubmit(event,
           this.props.requestType,
         )}>

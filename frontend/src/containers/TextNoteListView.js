@@ -1,35 +1,36 @@
 import React from 'react'
 import axios from 'axios';
 
+import TextNotes from '../components/TextNotes.js'
 import Articles from '../components/Article.js'
 import CustomForm from '../components/Form.js'
 import {Link} from 'react-router-dom'
 class ArticleList extends React.Component{
 
   state ={
-    articles: []
+    text_notes: []
   }
 
-  fetchArticles = () => {
+  fetchTextNotes = () => {
     axios.get("http://127.0.0.1:8000/api/TextNotes/").then(res => {
       this.setState({
-        articles: res.data
+        text_notes: res.data
       });
       console.log(res.data)
     });
   }
 
   componentDidMount() {
-    this.fetchArticles();
+    this.fetchTextNotes();
   }
 
   render(){
     return(
       <div>
-      <h1> ArticleListView.js</h1>
-      <h2><Link to="/create/">Create an  article</Link></h2>
+      <h1> TextNoteListView.js</h1>
+      <h2><Link to="/create_note">New Note</Link></h2>
 
-        <Articles data ={this.state.articles}/>
+        <TextNotes data ={this.state.text_notes}/>
 
       </div>
     )
