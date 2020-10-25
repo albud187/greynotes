@@ -15,67 +15,36 @@ const IconText = ({ icon, text }) => (
 
 const TextNotes =(props)=>{
   return(
-    <div className="site-card-wrapper">
-      <Row gutter={16}>
-        <Col span={8}>
-          <Card title="Card title" bordered={false}>
-            Card content
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Card title" bordered={false}>
-            Card content
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Card title" bordered={false}>
-            Card content
-          </Card>
-        </Col>
-      </Row>
 
-      <Row gutter={16}>
-        <Col span={8}>
-          <Card title="Card title" bordered={false}>
-            Card content
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Card title" bordered={false}>
-            Card content
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Card title" bordered={false}>
-            Card content
-          </Card>
-        </Col>
-      </Row>
+
 
 
 
   <List
-    itemLayout="vertical"
-    size="large"
+    grid={{ gutter: 16, column: 6}}
+
 
     dataSource={props.data}
 
     renderItem={item => (
       <List.Item key={item.id}>
-
+      <Card>
         <List.Item.Meta
-          title={<a href={"/text_note/"+`${item.id}`}>{item.id} - {item.title}</a>}
+          title={<a href={"/text_note/"+`${item.id}`}>
+          {item.id} - {item.title}
+          </a>}
+
         />
-      
+
 
 
         <p>date_created = {item.date_created}</p> <p>group = {item.note_group.slug}</p>
 
-
+        </Card>
       </List.Item>
     )}
   />
-</div>
+
   )
 }
 
