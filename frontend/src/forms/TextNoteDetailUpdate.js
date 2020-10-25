@@ -27,25 +27,13 @@ render(){
           this.props.textnoteContent,
           this.props.textnoteTitle)}>
           <Form.Item label="title">
-          {
-            this.props.textnoteID ? (
               <Input name="title" value = {this.props.textnoteTitle}/>
-
-            ):
-              <Input name="title" placeholder="Put a title here"/>
-          }
-
           </Form.Item>
           <Form.Item label="content">
-          {
-            this.props.textnoteID ? (
               <TextArea rows={9} name="content" value={this.props.textnoteContent} />
-            ):
-              <TextArea rows={9} name="content" placeholder="write some content here" />
-          }
           </Form.Item>
           <Form.Item>
-            <button type="submit">Submit</button>
+            <button type="submit">Update</button>
           </Form.Item>
         </form>
       </div>

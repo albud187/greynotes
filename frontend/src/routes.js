@@ -20,7 +20,7 @@ const BaseRouter =() => (
 
     <Route exact path='/text_note_list' component = {TextNoteListView} />
     <Route exact path='/create_note' component = {TextNoteCreate} />
-    <Route exact path='/text_note/:noteID' component = {TextNoteDetailView} />
+    <Route exact path='/text_note/:textnoteID' component = {TextNoteDetailView} />
 
 
 

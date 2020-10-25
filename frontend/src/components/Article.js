@@ -25,11 +25,7 @@ const Articles =(props)=>{
     dataSource={props.data}
 
     renderItem={item => (
-      <List.Item
-        key={item.title}
-
-
-      >
+      <List.Item key={item.title}>
         <List.Item.Meta
           title={<a href={"/article/"+`${item.id}`}>{item.id} - {item.title}</a>}
           description={item.description}
