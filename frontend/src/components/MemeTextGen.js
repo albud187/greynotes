@@ -36,8 +36,7 @@ render(){
           </Form.Item>
         </form>
 
-        <h1>Memed Text</h1>
-        <MemeTextOutput/>
+      
 
       </div>
     );

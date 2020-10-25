@@ -4,7 +4,6 @@ import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 const { TextArea } = Input;
 
-const output_data = 1
 
 class MemeTextOutput extends Component {
   HandleMemeGenSubmit = (event)=>{
