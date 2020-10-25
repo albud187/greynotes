@@ -15,6 +15,7 @@ const IconText = ({ icon, text }) => (
 
 const TextNotes =(props)=>{
   return(
+
   <List
     itemLayout="vertical"
     size="large"
@@ -22,16 +23,25 @@ const TextNotes =(props)=>{
     dataSource={props.data}
 
     renderItem={item => (
-      <List.Item key={item.title}>
+      <List.Item key={item.id}>
+
         <List.Item.Meta
           title={<a href={"/text_note/"+`${item.id}`}>{item.id} - {item.title}</a>}
-          description={item.description}
         />
+        <Row gutter={10}>
+          <Col span={5}>
+              Date Created: {item.date_created}
+          </Col>
+          <Col span={5}>
+          Group: {item.note_group.slug}
+          </Col>
+
+        </Row>
+
 
       </List.Item>
     )}
   />
-
   )
 }
 

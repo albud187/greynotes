@@ -15,12 +15,13 @@ class ArticleSerializer(serializers.ModelSerializer):
 class NoteGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = NoteGroup
-        fields = '__all__'
+        fields = ('slug', 'group_name')
 
 class TextNoteSerializer(serializers.ModelSerializer):
+    note_group = NoteGroupSerializer()
     class Meta:
         model = TextNote
-        fields =('id', 'title', 'content', 'note_group')
+        fields =('id', 'title', 'content', 'note_group','date_created')
 
 class MemeTextSerializer(serializers.Serializer):
     textToMeme = serializers.CharField()
