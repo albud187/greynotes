@@ -16,13 +16,8 @@ const IconText = ({ icon, text }) => (
 const TextNotes =(props)=>{
   return(
 
-
-
-
-
   <List
     grid={{ gutter: 16, column: 6}}
-
 
     dataSource={props.data}
 
@@ -36,9 +31,7 @@ const TextNotes =(props)=>{
 
         />
 
-
-
-        <p>date_created = {item.date_created}</p> <p>group = {item.note_group.slug}</p>
+        <p>date_created = {item.date_created}</p> <p>group = {item.note_group}</p>
 
         </Card>
       </List.Item>

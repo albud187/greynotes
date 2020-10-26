@@ -16,26 +16,22 @@ class TextNoteCreate extends React.Component {
       .then(res=>console.log(res))
       .catch(err=>console.log(err));
       this.forceUpdate();
-      this.props.history.push('/');
+      this.props.history.push('/text_note_list');
+      this.forceUpdate();
+      this.props.history.push('/text_note_list')
       this.forceUpdate();
   }
 
 render(){
   return (
       <div>
-      <h1>TextNoteCreate.js</h1>
-        <form onSubmit={(event)=>this.handleFormSubmit(event,
-          this.props.requestType,
-        )}>
-          <Form.Item label="title">
-              <Input name="title" placeholder="Put a title here"/>
-          </Form.Item>
-          <Form.Item label="content">
-              <TextArea rows={9} name="content" placeholder="NEW TEXT HERE" />
-          </Form.Item>
-          <Form.Item>
+      <h1>textnotecreate.js</h1>
+        <form onSubmit={(event)=>this.handleFormSubmit(event)}>
+          <p>Title</p>
+              <textarea rows="1" cols="50" name="title" placeholder="title"/>
+          <p>Content</p>
+              <textarea rows="9" cols="50" name="content" placeholder="content" />
             <button type="submit">Submit</button>
-          </Form.Item>
         </form>
       </div>
     );

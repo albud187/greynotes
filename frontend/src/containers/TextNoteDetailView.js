@@ -24,9 +24,11 @@ class TextNoteDetail extends React.Component{
 
 
     handleDelete = (event) => {
+      event.preventDefault()
       const textnoteID = this.props.match.params.textnoteID;
-      axios.delete(`http://127.0.0.1:8000/api/textnotes/${textnoteID}/`)
-        this.props.history.push('/');
+      axios.delete(`http://127.0.0.1:8000/api/TextNotes/${textnoteID}/`)
+        this.forceUpdate();
+        this.props.history.push('/text_note_list');
         this.forceUpdate();
     }
 
@@ -41,7 +43,7 @@ class TextNoteDetail extends React.Component{
         textnoteContent={this.state.textnote.content}
         textnoteTitle = {this.state.textnote.title}/>
 
-      <form onSubmit={this.handleDelete}>
+      <form onSubmit={(event)=>this.handleDelete(event)}>
         <Button type='danger' htmlType='submit'>Delete</Button>
       </form>
 

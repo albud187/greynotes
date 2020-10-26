@@ -15,10 +15,9 @@ class ArticleSerializer(serializers.ModelSerializer):
 class NoteGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = NoteGroup
-        fields = ('slug', 'group_name')
+        fields = '__all__'
 
 class TextNoteSerializer(serializers.ModelSerializer):
-    note_group = NoteGroupSerializer()
     class Meta:
         model = TextNote
         fields =('id', 'title', 'content', 'note_group','date_created')
