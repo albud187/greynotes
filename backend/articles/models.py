@@ -43,6 +43,10 @@ class NoteGroup(models.Model):
     def __str__(self):
         return self.group_name
 
+    @property
+    def note_group_name(self):
+        return(self.group_name)
+
 
 class TextNote(models.Model):
     note_group = models.ForeignKey(NoteGroup, null=True, blank=True, on_delete=models.SET_NULL)
