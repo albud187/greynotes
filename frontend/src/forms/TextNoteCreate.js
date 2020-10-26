@@ -51,6 +51,7 @@ render(){
               <br></br>
           <label for="notegroup">NoteGroup: </label>
             <select name="notegroup" id="notegroup">
+            <option value="">_ungrouped_</option>
             {this.state.note_groups.map((val)=>(
               <option value={val.id}>{val.group_name}</option>
             ))}
