@@ -29,6 +29,9 @@ class TextNoteViewSet(viewsets.ModelViewSet):
     serializer_class = TextNoteSerializer
     queryset = TextNote.objects.all()
 
+meme_text_dict = {'E':'3', 'A':'4', 'I':'1','V':'\/','W':'\/\/','T':'7', 'S':'5'}
+meme_text_dict_list = list(meme_text_dict.keys())
+
 from rest_framework.response import Response
 from rest_framework import serializers, views
 
@@ -40,6 +43,12 @@ def mememify_text(input_text):
             char=char.lower()
         if random_number==2:
             char=char.upper()
+        if char in meme_text_dict_list:
+            random_number_two = random.randint(1,2)
+            if random_number_two ==1:
+                char = meme_text_dict[char]
+            if random_number_two ==2:
+                char = char
         new_str = new_str+char
     return(new_str)
 #https://stackoverflow.com/questions/27786308/django-and-rest-api-to-serve-calculation-based-requests
