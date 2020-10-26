@@ -20,7 +20,7 @@ class NoteGroupSerializer(serializers.ModelSerializer):
 class TextNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = TextNote
-        fields =('id', 'title', 'content', 'note_group','date_created')
+        fields =('id', 'title', 'content', 'note_group','note_group_name','date_created')
 
 class MemeTextSerializer(serializers.Serializer):
     textToMeme = serializers.CharField()

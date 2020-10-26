@@ -6,18 +6,15 @@ import { Row, Col, Divider } from 'antd';
 import { Card } from 'antd';
 
 
-const IconText = ({ icon, text }) => (
-<Space>
-{React.createElement(icon)}
-{text}
-</Space>
-);
+
 
 const TextNotes =(props)=>{
+
+
   return(
 
   <List
-    grid={{ gutter: 16, column: 6}}
+    grid={{ gutter: 16, column: 4}}
 
     dataSource={props.data}
 
@@ -27,11 +24,10 @@ const TextNotes =(props)=>{
         <List.Item.Meta
           title={<a href={"/text_note/"+`${item.id}`}>
           {item.id} - {item.title}
-          </a>}
+          </a>}/>
 
-        />
-
-        <p>date_created = {item.date_created}</p> <p>group = {item.note_group}</p>
+        <p><strong>date created</strong> : {item.date_created}</p>
+        <p><strong>group</strong>: {item.note_group_name}</p>
 
         </Card>
       </List.Item>

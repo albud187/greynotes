@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Component } from 'react';
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
-import MemeTextOutput from './MemeTextOutput.js'
 const { TextArea } = Input;
 
 const output_data = 1

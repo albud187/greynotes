@@ -23,6 +23,7 @@ class TextNoteDetailUpdate extends React.Component {
 
     state ={
       textnote: {}
+      
 
     }
     componentDidMount() {

@@ -54,6 +54,10 @@ class TextNote(models.Model):
     def __str__(self):
         return (str(self.date_created) +'_text_'+ self.title)
 
+    @property
+    def note_group_name(self):
+        return(self.note_group.group_name)
+
 class ListNote(models.Model):
     note_group = models.ForeignKey(NoteGroup, null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length = 120)

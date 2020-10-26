@@ -16,6 +16,8 @@ import random
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import serializers, views
 
 class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
@@ -32,8 +34,7 @@ class TextNoteViewSet(viewsets.ModelViewSet):
 meme_text_dict = {'E':'3', 'A':'4', 'I':'1','V':'\/','W':'\/\/','T':'7', 'S':'5'}
 meme_text_dict_list = list(meme_text_dict.keys())
 
-from rest_framework.response import Response
-from rest_framework import serializers, views
+
 
 def mememify_text(input_text):
     new_str=''
