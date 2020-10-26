@@ -12,7 +12,8 @@ class TextNoteDetail extends React.Component{
 
   componentDidMount() {
       const textnoteID = this.props.match.params.textnoteID;
-      axios.get(`http://127.0.0.1:8000/api/TextNotes/${textnoteID}/`).then(res => {
+      axios.get(`http://127.0.0.1:8000/api/TextNotes/${textnoteID}/`)
+        .then(res => {
         this.setState({
           textnote: res.data
         });
