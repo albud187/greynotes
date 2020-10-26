@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import 'antd/dist/antd.css'
 import BaseRouter from './routes';
 import CustomLayout from './containers/Layout.js'
-import ArticleList from './containers/ArticleListView'
 
 class App extends Component {
   render(){

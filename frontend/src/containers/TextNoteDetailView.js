@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios';
 import {Button, Card} from 'antd'
-import CustomForm from '../components/Form'
 import TextNoteDetailUpdate from '../forms/TextNoteDetailUpdate.js'
 
 class TextNoteDetail extends React.Component{

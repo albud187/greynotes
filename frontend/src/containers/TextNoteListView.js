@@ -2,9 +2,8 @@ import React from 'react'
 import axios from 'axios';
 
 import TextNotes from '../components/TextNotes.js'
-import CustomForm from '../components/Form.js'
 import {Link} from 'react-router-dom'
-class ArticleList extends React.Component{
+class TextNoteListView extends React.Component{
 
   state ={
     text_notes: []
@@ -36,4 +35,4 @@ class ArticleList extends React.Component{
   }
 }
 
-export default ArticleList
+export default TextNoteListView
