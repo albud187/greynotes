@@ -9,8 +9,9 @@ from .serializers import (
     ArticleSerializer,
     NoteGroupSerializer,
     TextNoteSerializer,
-    MemeTextSerializer)
-
+    MemeTextSerializer,
+    GroupNameSerializer)
+import json
 from rest_framework import viewsets
 import random
 from django.shortcuts import render
@@ -18,6 +19,8 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import serializers, views
+
+from django.core.serializers import serialize as SERIALIZE
 
 class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
@@ -31,12 +34,9 @@ class TextNoteViewSet(viewsets.ModelViewSet):
     serializer_class = TextNoteSerializer
     queryset = TextNote.objects.all()
 
-meme_text_dict = {'E':'3', 'A':'4', 'I':'1','V':'\/','W':'\/\/','T':'7', 'S':'5'}
-meme_text_dict_list = list(meme_text_dict.keys())
-
-
-
 def mememify_text(input_text):
+    meme_text_dict = {'E':'3', 'A':'4', 'I':'1','V':'\/','W':'\/\/','T':'7', 'S':'5'}
+    meme_text_dict_list = list(meme_text_dict.keys())
     new_str=''
     for char in input_text:
         random_number = random.randint(1,2)
@@ -71,6 +71,38 @@ class MemeTextView(views.APIView):
         return Response({
             "complex_result": memed_text,
         })
+
+def filterTextNote(grouping):
+    groupname = NoteGroup.objects.filter(group_name=grouping)[0]
+    target_query = TextNote.objects.filter(note_group=groupname)
+    target_query_json = []
+    for item in target_query:
+        target_query_json.append(SERIALIZE('json',[item]))
+    return(list(target_query_json))
+
+def filterListNote(grouping):
+    target_query = ListNote.objects.filter(note_group=grouping.id)
+
+class QueryTextNotesView(views.APIView):
+
+    def get(self, request):
+        # Validate the incoming input (provided through query parameters)
+        serializer = GroupNameSerializer(data=request.query_params)
+        serializer.is_valid(raise_exception=True)
+
+        # Get the model input
+        data = serializer.validated_data
+        groupname = data["groupname"]
+
+        # Perform the complex calculations
+        output_query = filterTextNote(groupname)
+
+        # Return it in your custom format
+        return Response(output_query)
+
+grup = NoteGroup.objects.filter(group_name='groupA')[0]
+
+
 
 # from rest_framework.generics import (
 #     ListAPIView,

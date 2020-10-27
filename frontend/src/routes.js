@@ -1,5 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
+import Home from './components/Home.js'
 
 import Placeholder from './components/placeholder.js'
 import MemeTextGen from './components/MemeTextGen.js'
@@ -10,6 +11,8 @@ import TextNoteDetailUpdate from './forms/TextNoteDetailUpdate.js'
 import TextNoteDetailView from './containers/TextNoteDetailView.js'
 const BaseRouter =() => (
   <div>
+    <Route exact path ='/' component ={Home} />
+
     <Route exact path ='/create-article/' component ={TextNoteCreate} />
     <Route exact path='/meme-text-gen/' component = {MemeTextGen} />
     <Route exact path='/placeholder' component = {Placeholder} />

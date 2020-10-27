@@ -24,3 +24,6 @@ class TextNoteSerializer(serializers.ModelSerializer):
 
 class MemeTextSerializer(serializers.Serializer):
     textToMeme = serializers.CharField()
+
+class GroupNameSerializer(serializers.Serializer):
+    groupname = serializers.CharField()

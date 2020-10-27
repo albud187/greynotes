@@ -37,11 +37,11 @@ render(){
       {
         this.state.memed_text ?
         (<Form.Item label="output">
-            <TextArea rows={9} name="output" value={this.state.memed_text} />
+            <textarea rows="9" cols="50" name="output" value={this.state.memed_text} />
         </Form.Item>) :
         <Form.Item label="output">
 
-            <form rows={9} name="output" placeholder="output text" />
+            <textarea rows="9" cols="50" name="output" placeholder="output text" />
         </Form.Item>
       }
         <form onSubmit={(event)=>this.HandleMemeGenSubmit(event,
@@ -50,7 +50,7 @@ render(){
 
 
           <Form.Item label="input">
-              <TextArea rows={9} name="textToMeme" placeholder="TEXT TO MEMEMIFY" />
+              <textarea rows="9" cols="50" name="textToMeme" placeholder="TEXT TO MEMEMIFY" />
           </Form.Item>
           <Form.Item>
             <button type="submit">Submit</button>
