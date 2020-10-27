@@ -10,7 +10,8 @@ from .serializers import (
     MemeTextSerializer,
     GroupNameSerializer,
     ListNoteSerializer,
-    ListNoteEntrySerializer)
+    ListNoteEntrySerializer,
+    ListNotetitleSerializer,)
 
 import json
 from rest_framework import viewsets
@@ -107,6 +108,20 @@ class QueryTextNotesView(ListAPIView):
             target_queryset = TextNote.objects.all()
         return(target_queryset)
 
+def filterListNoteEntry(parentlist):
+    parentlist=ListNote.objects.filter(title=parentlist)[0]
+    target_query=ListNoteEntry.objects.filter(parent_list=parentlist)
+    return(target_query)
+
+class ListNoteEntrysView(ListAPIView):
+    serializer_class=ListNoteEntrySerializer
+
+    def get_queryset(self):
+        parentlist = self.request.GET['parentlist']
+        if parentlist:
+            print(parentlist)
+            target_queryset = filterListNoteEntry(parentlist)
+        return(target_queryset)
 
 # class ArticleListView(ListAPIView):
 #     queryset = Article.objects.all()

@@ -26,13 +26,15 @@ class ListNoteEntrySerializer(serializers.ModelSerializer):
         model=ListNoteEntry
         fields = '__all__'
 
-
 #function related
 class MemeTextSerializer(serializers.Serializer):
     textToMeme = serializers.CharField()
 
 class GroupNameSerializer(serializers.Serializer):
     groupname = serializers.CharField()
+
+class ListNotetitleSerializer(serializers.Serializer):
+    listnotetitle= serializers.CharField()
 # class ListNote(models.Model):
 #     note_group = models.ForeignKey(NoteGroup, null=True, blank=True, on_delete=models.SET_NULL)
 #     title = models.CharField(max_length = 120)

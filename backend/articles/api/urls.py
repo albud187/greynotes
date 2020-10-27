@@ -4,7 +4,8 @@ from articles.api.views import (
     MemeTextView,
     QueryTextNotesView,
     ListNoteViewSet,
-    ListNoteEntryViewSet
+    ListNoteEntryViewSet,
+    ListNoteEntrysView,
 )
 
 from rest_framework.routers import DefaultRouter
@@ -18,8 +19,8 @@ router.register('ListNoteEntrys', ListNoteEntryViewSet, basename='ListNoteEntrys
 
 function_views=[
     path('meme_text', MemeTextView.as_view(), name='meme_text'),
-    path('query_text_notes', QueryTextNotesView.as_view(), name='query_text_notes')
-
+    path('query_text_notes', QueryTextNotesView.as_view(), name='query_text_notes'),
+    path('list_note_entrys', ListNoteEntrysView.as_view(), name='list_note_entrys')
 ]
 urlpatterns = router.urls + function_views
 
