@@ -1,12 +1,10 @@
 from articles.models import (
-    Article,
     NoteGroup,
     TextNote,
     ListNote,
     ListNoteEntry)
 
 from .serializers import (
-    ArticleSerializer,
     NoteGroupSerializer,
     TextNoteSerializer,
     MemeTextSerializer,
@@ -29,10 +27,6 @@ from rest_framework.generics import (
     DestroyAPIView,
     UpdateAPIView
 )
-
-class ArticleViewSet(viewsets.ModelViewSet):
-    serializer_class = ArticleSerializer
-    queryset = Article.objects.all()
 
 class NoteGroupViewSet(viewsets.ModelViewSet):
     serializer_class = NoteGroupSerializer

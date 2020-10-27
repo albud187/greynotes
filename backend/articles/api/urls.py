@@ -1,5 +1,4 @@
 from articles.api.views import (
-    ArticleViewSet,
     NoteGroupViewSet,
     TextNoteViewSet,
     MemeTextView,
@@ -9,7 +8,6 @@ from rest_framework.routers import DefaultRouter
 from django.urls import path
 
 router = DefaultRouter()
-router.register('articles', ArticleViewSet, basename='articles')
 router.register('NoteGroups', NoteGroupViewSet, basename='NoteGroups')
 router.register('TextNotes', TextNoteViewSet, basename='TextNotes')
 
