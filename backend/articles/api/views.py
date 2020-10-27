@@ -87,9 +87,14 @@ class QueryTextNotesView(ListAPIView):
 
     def get_queryset(self):
         grouping = self.request.GET['groupname']
-        print(grouping)
-        target_queryset = filterTextNote(grouping)
+        if grouping:
+            print(grouping)
+            target_queryset = filterTextNote(grouping)
+
+        else:
+            target_queryset = TextNote.objects.all()
         return(target_queryset)
+
 
 def filterListNote(grouping):
     target_query = ListNote.objects.filter(note_group=grouping.id)

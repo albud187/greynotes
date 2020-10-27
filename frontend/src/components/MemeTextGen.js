@@ -27,8 +27,6 @@ class MemeTextGen extends Component {
     });
     console.log("result is " + this.state.memed_text)
   });
-
-
   }
 
 render(){
