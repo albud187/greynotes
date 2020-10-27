@@ -22,6 +22,14 @@ from rest_framework import serializers, views
 
 from django.core.serializers import serialize as SERIALIZE
 
+from rest_framework.generics import (
+    ListAPIView,
+    RetrieveAPIView,
+    CreateAPIView,
+    DestroyAPIView,
+    UpdateAPIView
+)
+
 class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
@@ -75,48 +83,34 @@ class MemeTextView(views.APIView):
 def filterTextNote(grouping):
     groupname = NoteGroup.objects.filter(group_name=grouping)[0]
     target_query = TextNote.objects.filter(note_group=groupname)
-    target_query_json = []
-    for item in target_query:
-        target_query_json.append(SERIALIZE('json',[item]))
-    return(list(target_query_json))
+    # target_query_json = []
+    # for item in target_query:
+    #     target_query_json.append(SERIALIZE('json',[item]))
+    return(target_query)
+
+class QueryTextNotesView(ListAPIView):
+    serializer_class = TextNoteSerializer
+
+    def get_queryset(self):
+        grouping = self.request.GET['groupname']
+        print(grouping)
+        target_queryset = filterTextNote(grouping)
+        return(target_queryset)
 
 def filterListNote(grouping):
     target_query = ListNote.objects.filter(note_group=grouping.id)
 
-class QueryTextNotesView(views.APIView):
-
-    def get(self, request):
-        # Validate the incoming input (provided through query parameters)
-        serializer = GroupNameSerializer(data=request.query_params)
-        serializer.is_valid(raise_exception=True)
-
-        # Get the model input
-        data = serializer.validated_data
-        groupname = data["groupname"]
-
-        # Perform the complex calculations
-        output_query = filterTextNote(groupname)
-
-        # Return it in your custom format
-        return Response(output_query)
-
-grup = NoteGroup.objects.filter(group_name='groupA')[0]
+# class ArticleListView(ListAPIView):
+#     queryset = Article.objects.all()
+#     serializer_class = ArticleSerializer
+#
 
 
-
-# from rest_framework.generics import (
-#     ListAPIView,
-#     RetrieveAPIView,
-#     CreateAPIView,
-#     DestroyAPIView,
-#     UpdateAPIView
-# )
 #
 #
 #
 # class ArticleListView(ListAPIView):
-#     queryset = Article.objects.all()
-#     serializer_class = ArticleSerializer
+
 #
 # class ArticleDetailView(RetrieveAPIView):
 #     queryset = Article.objects.all()
