@@ -8,7 +8,10 @@ from .serializers import (
     NoteGroupSerializer,
     TextNoteSerializer,
     MemeTextSerializer,
-    GroupNameSerializer)
+    GroupNameSerializer,
+    ListNoteSerializer,
+    ListNoteEntrySerializer)
+
 import json
 from rest_framework import viewsets
 import random
@@ -35,6 +38,15 @@ class NoteGroupViewSet(viewsets.ModelViewSet):
 class TextNoteViewSet(viewsets.ModelViewSet):
     serializer_class = TextNoteSerializer
     queryset = TextNote.objects.all()
+
+class ListNoteViewSet(viewsets.ModelViewSet):
+    serializer_class= ListNoteSerializer
+    queryset = ListNote.objects.all()
+
+class ListNoteEntryViewSet(viewsets.ModelViewSet):
+    serializer_class = ListNoteEntrySerializer
+    queryset = ListNoteEntry.objects.all()
+
 
 def mememify_text(input_text):
     meme_text_dict = {'E':'3', 'A':'4', 'I':'1','V':'\/','W':'\/\/','T':'7', 'S':'5'}
@@ -95,9 +107,6 @@ class QueryTextNotesView(ListAPIView):
             target_queryset = TextNote.objects.all()
         return(target_queryset)
 
-
-def filterListNote(grouping):
-    target_query = ListNote.objects.filter(note_group=grouping.id)
 
 # class ArticleListView(ListAPIView):
 #     queryset = Article.objects.all()

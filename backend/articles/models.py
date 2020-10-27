@@ -70,7 +70,11 @@ class ListNoteEntry(models.Model):
     completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return(str(self.parent_list)+'_' +str(self.id))
+        return(str(self.parent_list)+'-' +str(self.id))
+
+    @property
+    def ListNote_name(self):
+        return(self.parent_list.title)
 
 # class ListNote(models.Model):
 #     grouping = models.ForeignKey(NoteGroup)

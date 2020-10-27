@@ -2,14 +2,19 @@ from articles.api.views import (
     NoteGroupViewSet,
     TextNoteViewSet,
     MemeTextView,
-    QueryTextNotesView
+    QueryTextNotesView,
+    ListNoteViewSet,
+    ListNoteEntryViewSet
 )
+
 from rest_framework.routers import DefaultRouter
 from django.urls import path
 
 router = DefaultRouter()
 router.register('NoteGroups', NoteGroupViewSet, basename='NoteGroups')
 router.register('TextNotes', TextNoteViewSet, basename='TextNotes')
+router.register('ListNotes', ListNoteViewSet, basename='ListNotes')
+router.register('ListNoteEntrys', ListNoteEntryViewSet, basename='ListNoteEntrys')
 
 function_views=[
     path('meme_text', MemeTextView.as_view(), name='meme_text'),
