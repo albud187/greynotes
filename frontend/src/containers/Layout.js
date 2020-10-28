@@ -17,7 +17,7 @@ const CustomLayout = (props)=>{
       <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item><Link to="/text_note_list">Text Notes</Link></Breadcrumb.Item>
-          <Breadcrumb.Item><Link to="/">List Notes (just goes to home rn)</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to="/list_note_list">List Notes</Link></Breadcrumb.Item>
           <Breadcrumb.Item><Link to="/filter_text_note">TextNoteGroups</Link></Breadcrumb.Item>
           <Breadcrumb.Item><Link to="/meme-text-gen/">Meme Text Generator</Link></Breadcrumb.Item>
 

@@ -5,7 +5,7 @@ import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 import { Row, Col, Divider } from 'antd';
 import { Card } from 'antd';
 
-const TextNotes =(props)=>{
+const ListNotes =(props)=>{
 
   return(
 
@@ -18,7 +18,7 @@ const TextNotes =(props)=>{
       <List.Item key={item.id}>
       <Card>
         <List.Item.Meta
-          title={<a href={"/text_note/"+`${item.id}`}>
+          title={<a href={"/list_note/"+`${item.id}`}>
           {item.id} - {item.title}
           </a>}/>
 
@@ -29,8 +29,7 @@ const TextNotes =(props)=>{
       </List.Item>
     )}
   />
-
   )
 }
 
-export default TextNotes
+export default ListNotes
