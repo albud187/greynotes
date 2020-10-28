@@ -7,12 +7,11 @@ import MemeTextGen from './components/MemeTextGen.js'
 
 import TextNoteListView from './containers/TextNoteListView.js'
 import TextNoteCreate from './forms/TextNoteCreate.js'
-import TextNoteDetailUpdate from './forms/TextNoteDetailUpdate.js'
 import TextNoteDetailView from './containers/TextNoteDetailView.js'
+import FilterTextNotes from './components/FilterTextNotes'
 
 import ListNoteListView from './containers/ListNoteListView.js'
-import FilterTextNotes from './components/FilterTextNotes'
-import ListNoteDetailUpdateView from './forms/ListNoteDetailUpdateView.js'
+import ListNoteDetailView from './containers/ListNoteDetailView.js'
 const BaseRouter =() => (
   <div>
     <Route exact path ='/' component ={Home} />
@@ -27,7 +26,7 @@ const BaseRouter =() => (
     <Route exact path='/text_note/:textnoteID' component = {TextNoteDetailView} />
 
     <Route exact path='/list_note_list' component = {ListNoteListView} />
-    <Route exact path='/list_note/:listnoteID' component = {ListNoteDetailUpdateView} />
+    <Route exact path='/list_note/:listnoteID' component = {ListNoteDetailView} />
 
 
 

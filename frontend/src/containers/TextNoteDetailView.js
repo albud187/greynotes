@@ -47,11 +47,7 @@ class TextNoteDetail extends React.Component{
         <Button type='danger' htmlType='submit'>Delete</Button>
       </form>
 
-
       </div>
-
-
-
 
     )
   }

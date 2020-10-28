@@ -109,7 +109,7 @@ class QueryTextNotesView(ListAPIView):
         return(target_queryset)
 
 def filterListNoteEntry(parentlist):
-    parentlist=ListNote.objects.filter(title=parentlist)[0]
+    parentlist=ListNote.objects.filter(id=parentlist)[0]
     target_query=ListNoteEntry.objects.filter(parent_list=parentlist)
     return(target_query)
 

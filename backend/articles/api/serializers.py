@@ -35,6 +35,9 @@ class GroupNameSerializer(serializers.Serializer):
 
 class ListNotetitleSerializer(serializers.Serializer):
     listnotetitle= serializers.CharField()
+
+class ListNoteIndexSerializer(serializers.Serializer):
+    listnoteindex=serializers.CharField()
 # class ListNote(models.Model):
 #     note_group = models.ForeignKey(NoteGroup, null=True, blank=True, on_delete=models.SET_NULL)
 #     title = models.CharField(max_length = 120)
