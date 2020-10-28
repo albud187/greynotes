@@ -113,7 +113,7 @@ def filterListNoteEntry(parentlist):
     target_query=ListNoteEntry.objects.filter(parent_list=parentlist)
     return(target_query)
 
-class ListNoteEntrysView(ListAPIView):
+class ListNoteEntrysListViewSet(viewsets.ModelViewSet):
     serializer_class=ListNoteEntrySerializer
 
     def get_queryset(self):
