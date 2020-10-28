@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Component } from 'react';
-import { Form, Input, Button } from 'antd';
+
 import axios from 'axios';
 import TextNotes from './TextNotes.js'
-const { TextArea } = Input;
+
 
 class FilterTextNotes extends Component {
 

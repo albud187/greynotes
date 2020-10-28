@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Component } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input} from 'antd';
 import axios from 'axios';
-const { TextArea } = Input;
+
 
 const output_data = 1
 

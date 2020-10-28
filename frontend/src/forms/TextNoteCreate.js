@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
-import { List, Avatar, Space } from 'antd';
+import React from 'react';
 
 import axios from 'axios';
-const { TextArea } = Input;
+
 
 class TextNoteCreate extends React.Component {
   state ={

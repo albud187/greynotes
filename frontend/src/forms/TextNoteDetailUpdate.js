@@ -1,7 +1,7 @@
-import React, { setState } from 'react';
-import { Form, Input, Button } from 'antd';
+import React from 'react';
+import { Input } from 'antd';
 import axios from 'axios';
-const { TextArea } = Input;
+
 
 class TextNoteDetailUpdate extends React.Component {
   state ={
