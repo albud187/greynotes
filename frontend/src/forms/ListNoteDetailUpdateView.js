@@ -48,7 +48,6 @@ class ListNoteDetailUpdateView extends React.Component {
       list_note_entrys: result.data,
       list_note:this.props.listnotetID
     });
-    console.log(this.state.list_note_entrys)
     })
 
     axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +parentlist)
@@ -56,11 +55,35 @@ class ListNoteDetailUpdateView extends React.Component {
       list_note_entrys: result.data,
       list_note:this.props.listnotetID
     });
-    console.log(this.state.list_note_entrys)
     })
   }
 
-  handleEntryDelete
+  handleEntryDelete = (event,listentryID,parentlist) =>{
+    event.preventDefault()
+    axios.delete(`http://127.0.0.1:8000/api/ListNoteEntrysAll/${listentryID}/`)
+
+      axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +parentlist)
+      .then(result =>{this.setState({
+        list_note_entrys: result.data,
+        list_note:this.props.listnotetID
+      });
+      })
+
+      axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +parentlist)
+      .then(result =>{this.setState({
+        list_note_entrys: result.data,
+        list_note:this.props.listnotetID
+      });
+      })
+
+      axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +parentlist)
+      .then(result =>{this.setState({
+        list_note_entrys: result.data,
+        list_note:this.props.listnotetID
+      });
+      })
+
+  }
 
 
     render(){
@@ -70,10 +93,18 @@ class ListNoteDetailUpdateView extends React.Component {
         dataSource={this.state.list_note_entrys}
         bordered
         renderItem={item => (
+            <>
+
             <form onSubmit={(event,itemID,parentlist)=>this.handleListItemEdit(event,item.id,item.parent_list)}>
               <textarea rows="1" cols="50" name="listentry" defaultValue = {item.entry_text}/>
               <button type="submit">Update</button>
             </form>
+            <form onSubmit ={(event,listentryID,parentlist)=>this.handleEntryDelete(event,item.id,item.parent_list)}>
+              <button type="submit">delete {item.id}</button>
+            </form>
+
+            </>
+
           )}
           />
 
