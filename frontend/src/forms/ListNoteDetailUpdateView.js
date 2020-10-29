@@ -93,18 +93,17 @@ class ListNoteDetailUpdateView extends React.Component {
         dataSource={this.state.list_note_entrys}
         bordered
         renderItem={item => (
-            <>
+          <List.Item key={item.id}>
 
             <form onSubmit={(event,itemID,parentlist)=>this.handleListItemEdit(event,item.id,item.parent_list)}>
               <textarea rows="1" cols="50" name="listentry" defaultValue = {item.entry_text}/>
               <button type="submit">Update</button>
             </form>
             <form onSubmit ={(event,listentryID,parentlist)=>this.handleEntryDelete(event,item.id,item.parent_list)}>
-              <button type="submit">delete {item.id}</button>
+              <button type="submit">**DELETE** {item.entry_text}**DELETE**</button>
             </form>
 
-            </>
-
+            </List.Item>
           )}
           />
 
