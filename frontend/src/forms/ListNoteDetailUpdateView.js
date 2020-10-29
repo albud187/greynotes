@@ -14,16 +14,13 @@ class ListNoteDetailUpdateView extends React.Component {
     const listnotetID = this.props.listnotetID
     axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +listnotetID)
     .then(result => {this.setState({
-        list_note_entrys: result.data
+        list_note_entrys: result.data,
+        list_note:this.props.listnotetID
         });
-        console.log(result.data)
   })
-
-    console.log('from detailupdate view- listnoteid is ' + listnotetID)
   }
 
   handleListItemEdit =(event,itemID,parentlist)=>{
-    event.preventDefault()
     const listentry = event.target.elements.listentry.value;
 
     console.log(listentry, parentlist)
@@ -38,7 +35,21 @@ class ListNoteDetailUpdateView extends React.Component {
 
   }
 
-  handleAddentry
+  handleAddEntry = (event,parentlist) =>{
+    const newlistentry = event.target.elements.newlistentry.value;
+    axios.post('http://127.0.0.1:8000/api/ListNoteEntrysAll/',{
+      entry_text:newlistentry,
+      parent_list:parentlist,
+    })
+    axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +parentlist)
+    .then(result =>{this.setState({
+      list_note_entrys: result.data,
+      list_note:this.props.listnotetID
+    });
+
+    })
+  }
+
   handleEntryDelete
 
 
@@ -51,14 +62,12 @@ class ListNoteDetailUpdateView extends React.Component {
         renderItem={item => (
             <form onSubmit={(event,itemID,parentlist)=>this.handleListItemEdit(event,item.id,item.parent_list)}>
               <textarea rows="1" cols="50" name="listentry" defaultValue = {item.entry_text}/>
-              <button type="submit">Edit</button>
+              <button type="submit">Update</button>
             </form>
-
-
           )}
           />
 
-          <form>
+          <form onSubmit={(event,parentlist)=>this.handleAddEntry(event,this.state.list_note)}>
           <textarea rows="1" cols="50" name="newlistentry" placeholder='new list item'/>
           <button type="submit">Add</button>
           </form>
