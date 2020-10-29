@@ -22,21 +22,46 @@ class ListNoteDetailUpdateView extends React.Component {
     console.log('from detailupdate view- listnoteid is ' + listnotetID)
   }
 
+  handleListItemEdit =(event,itemID,parentlist)=>{
+    event.preventDefault()
+    const listentry = event.target.elements.listentry.value;
+
+    console.log(listentry, parentlist)
+    axios.put(`http://127.0.0.1:8000/api/ListNoteEntrysAll/${itemID}/`,{
+      entry_text:listentry,
+      parent_list:parentlist,
+
+    })
+    .then(res=>console.log(res))
+    .catch(err=>console.log(err));
+    alert('note updated')
+
+  }
+
+  handleAddentry
+  handleEntryDelete
+
+
     render(){
         return(
       <div>
-      <p>from props: {this.props.listnoteid}</p>
-
       <List
         dataSource={this.state.list_note_entrys}
         bordered
         renderItem={item => (
-          <List.Item key={item.id}>
-          <List.Item.Meta
-          title={item.entry_text}/>
-          </List.Item>
+            <form onSubmit={(event,itemID,parentlist)=>this.handleListItemEdit(event,item.id,item.parent_list)}>
+              <textarea rows="1" cols="50" name="listentry" defaultValue = {item.entry_text}/>
+              <button type="submit">Edit</button>
+            </form>
+
+
           )}
-  />
+          />
+
+          <form>
+          <textarea rows="1" cols="50" name="newlistentry" placeholder='new list item'/>
+          <button type="submit">Add</button>
+          </form>
 
       </div>
     )

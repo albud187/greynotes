@@ -1,26 +1,21 @@
 from rest_framework import serializers
 
 from kanban.models import (
-    Article,
-    NoteGroup,
-    TextNote,
-    ListNote,
-    ListNoteEntry)
-
-class ArticleSerializer(serializers.ModelSerializer):
+    Project,
+    TaskStatus,
+    Task)
+    
+class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Article
-        fields = ('id','title', 'content')
-
-class NoteGroupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = NoteGroup
+        model = Project
         fields = '__all__'
 
-class TextNoteSerializer(serializers.ModelSerializer):
+class TaskStatusSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TextNote
-        fields =('id', 'title', 'content', 'note_group')
+        model = TaskStatus
+        fields = '__all__'
 
-class MemeTextSerializer(serializers.Serializer):
-    textToMeme = serializers.CharField()
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = '__all__'
