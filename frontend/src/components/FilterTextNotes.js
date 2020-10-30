@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-
+import {Link} from 'react-router-dom'
 import axios from 'axios';
 import TextNotes from './TextNotes.js'
 import ListNotes from './ListNotes.js'
@@ -69,10 +69,11 @@ render(){
 
       </select>
 
+
       <button type="submit">Filter</button>
-      <h1> Text Notes </h1>
+      <h1> Text Notes <Link to="/create_note">(New Text Note)</Link> </h1>
       <TextNotes data ={this.state.filtered_notes}/>
-      <h1> List Notes </h1>
+      <h1> List Notes <Link to="/create_list">(New List Note)</Link> </h1>
       <ListNotes data = {this.state.filtered_lists}/>
       </form>
       </div>
