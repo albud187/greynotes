@@ -3,13 +3,14 @@ import { Component } from 'react';
 
 import axios from 'axios';
 import TextNotes from './TextNotes.js'
-
+import ListNotes from './ListNotes.js'
 
 class FilterTextNotes extends Component {
 
   state ={
     note_groups: [],
-    filtered_notes: []
+    filtered_notes: [],
+    filtered_lists: []
   }
 
   fetchNoteGroups = () => {
@@ -28,6 +29,18 @@ class FilterTextNotes extends Component {
     event.preventDefault()
     const groupname = event.target.elements.notegroup.value;
     console.log(groupname);
+
+    axios.get('http://127.0.0.1:8000/api/query_list_notes'+
+    '?groupname='+groupname, {
+      groupname: groupname
+    })
+    .then(res => {
+    this.setState({
+      filtered_lists: res.data
+    });
+    console.log("result is " + this.state.filtered_lists)
+  });
+
     axios.get('http://127.0.0.1:8000/api/query_text_notes'+
     '?groupname='+groupname, {
       groupname: groupname
@@ -55,8 +68,10 @@ render(){
       </select>
 
       <button type="submit">Filter</button>
-
+      <h1> Text Notes </h1>
       <TextNotes data ={this.state.filtered_notes}/>
+      <h1> List Notes </h1>
+      <ListNotes data = {this.state.filtered_lists}/>
       </form>
       </div>
     );

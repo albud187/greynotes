@@ -85,6 +85,8 @@ class ListNoteDetailUpdateView extends React.Component {
 
   }
 
+
+
   handleTitleAndGroup = (event) =>{
     event.preventDefault()
     const title = event.target.elements.title.value;
@@ -157,6 +159,9 @@ class ListNoteDetailUpdateView extends React.Component {
           <textarea rows="1" cols="50" name="newlistentry" placeholder='new list item'/>
           <button type="submit">Add</button>
           </form>
+
+          
+
 
       </div>
     )

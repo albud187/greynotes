@@ -123,30 +123,23 @@ class ListNoteEntrysListViewSet(viewsets.ModelViewSet):
             target_queryset = filterListNoteEntry(parentlist)
         return(target_queryset)
 
-# class ArticleListView(ListAPIView):
-#     queryset = Article.objects.all()
-#     serializer_class = ArticleSerializer
-#
+def filterListNote(grouping):
+    groupname = NoteGroup.objects.filter(group_name=grouping)[0]
+    target_query = ListNote.objects.filter(note_group=groupname)
+    # target_query_json = []
+    # for item in target_query:
+    #     target_query_json.append(SERIALIZE('json',[item]))
+    return(target_query)
 
+class QueryListNotesView(ListAPIView):
+    serializer_class = ListNoteSerializer
 
-#
-#
-#
-# class ArticleListView(ListAPIView):
+    def get_queryset(self):
+        grouping = self.request.GET['groupname']
+        if grouping:
+            print(grouping)
+            target_queryset = filterListNote(grouping)
 
-#
-# class ArticleDetailView(RetrieveAPIView):
-#     queryset = Article.objects.all()
-#     serializer_class = ArticleSerializer
-#
-# class ArticleCreateView(CreateAPIView):
-#     queryset = Article.objects.all()
-#     serializer_class = ArticleSerializer
-#
-# class ArticleDeleteView(DestroyAPIView):
-#     queryset = Article.objects.all()
-#     serializer_class = ArticleSerializer
-#
-# class ArticleUpdateView(UpdateAPIView):
-#     queryset = Article.objects.all()
-#     serializer_class = ArticleSerializer
+        else:
+            target_queryset = ListNote.objects.all()
+        return(target_queryset)

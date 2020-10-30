@@ -26,7 +26,7 @@ class ListNoteListView extends React.Component{
     return(
       <div>
       <h1> ListNoteListView.js</h1>
-      <h2><Link to="/">New List Note</Link></h2>
+      <h2><Link to="/create_list">New List Note</Link></h2>
 
       <ListNotes data ={this.state.list_notes}/>
 

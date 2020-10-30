@@ -20,6 +20,16 @@ class ListNoteDetailView extends React.Component {
     });
   }
 
+  handleDelete = (event) => {
+      event.preventDefault()
+      const listnoteID = this.props.match.params.listnoteID;
+
+      axios.delete(`http://127.0.0.1:8000/api/ListNotes/${listnoteID}/`)
+        this.forceUpdate();
+        this.props.history.push('/list_note_list');
+        this.forceUpdate();
+    }
+
   render() {
     return (
       <div>ListNoteDetailView.js
@@ -28,6 +38,10 @@ class ListNoteDetailView extends React.Component {
         listnotetID={this.props.match.params.listnoteID}
         listnotetitle = {this.state.listnote.title}
         />
+
+        <form onSubmit={(event)=>this.handleDelete(event)}>
+          <Button type='danger' htmlType='submit'>Delete</Button>
+        </form>
       </div>
 
 
