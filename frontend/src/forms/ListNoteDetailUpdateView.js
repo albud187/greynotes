@@ -20,7 +20,6 @@ class ListNoteDetailUpdateView extends React.Component {
     });
   }
 
-
   handleListItemEdit =(event,itemID,parentlist)=>{
     event.preventDefault()
     const listentry = event.target.elements.listentry.value;
@@ -87,6 +86,15 @@ class ListNoteDetailUpdateView extends React.Component {
 
   handleTitleAndGroup = (event) =>{
     event.preventDefault()
+    const title = event.target.elements.title.value;
+    const notegroup = event.target.elements.notegroup.value
+    axios.put(`http://127.0.0.1:8000/api/ListNotes/${this.props.listnotetID}/`, {
+    title: title,
+    note_group: notegroup
+  })
+  .then(res=>console.log(res))
+  .catch(err=>console.log(err));
+  alert('note updated')
   }
 
   componentDidMount(){
@@ -104,7 +112,7 @@ class ListNoteDetailUpdateView extends React.Component {
         return(
       <div>
 
-      <form onSubmit={(event,listnoteID)=>this.handleFormSubmit(event, this.props.listnotetID)}>
+      <form onSubmit={(event)=>this.handleTitleAndGroup(event)}>
       <p>Title { this.state.list_note.note_group}</p>
         <textarea rows="1" cols="50" name="title" defaultValue = {this.props.listnotetitle}/>
       <select name="notegroup" id="notegroup">
