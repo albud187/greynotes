@@ -9,6 +9,7 @@ class ListNoteDetailUpdateView extends React.Component {
     note_groups: [],
     list_note: {},
     list_note_entrys: [],
+    list_note_actual:{}
   }
 
   fetchNoteGroups = () => {
@@ -106,6 +107,11 @@ class ListNoteDetailUpdateView extends React.Component {
         list_note:this.props.listnotetID
         });
   })
+    axios.get(`http://127.0.0.1:8000/api/ListNotes/${this.props.listnotetID}/`)
+      .then(result =>{this.setState({
+        list_note_actual:result.data
+      })})
+
   }
 
     render(){
@@ -118,7 +124,7 @@ class ListNoteDetailUpdateView extends React.Component {
       <select name="notegroup" id="notegroup">
             <option value="">_ungrouped_</option>
             {this.state.note_groups.map((val)=>(
-              val.id == this.state.list_note.note_group ? (
+              val.id == this.state.list_note_actual.note_group ? (
                 <option value={val.id} selected >{val.group_name}</option>
               ):
               <option value={val.id}>{val.group_name}</option>
