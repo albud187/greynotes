@@ -11,7 +11,32 @@ class ListNoteDetailUpdateView extends React.Component {
     list_note_entrys: [],
   }
 
+  fetchNoteGroups = () => {
+  axios.get("http://127.0.0.1:8000/api/NoteGroups/")
+  .then(result => {this.setState({
+      note_groups: result.data
+    });
+    console.log(result.data)
+  });
+}
+
+handleFormSubmit = (event, listnoteID)=>{
+  event.preventDefault()
+  const title = event.target.elements.title.value;
+  const notegroup = event.target.elements.notegroup.value
+
+
+  axios.put(`http://127.0.0.1:8000/api/ListNotes/${listnoteID}/`, {
+      title: title,
+      note_group: notegroup
+    })
+    .then(res=>console.log(res))
+    .catch(err=>console.log(err));
+    alert('note updated')
+  }
+
   componentDidMount(){
+    this.fetchNoteGroups();
     const listnotetID = this.props.listnotetID
     axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +listnotetID)
     .then(result => {this.setState({
@@ -19,6 +44,11 @@ class ListNoteDetailUpdateView extends React.Component {
         list_note:this.props.listnotetID
         });
   })
+
+    axios.get(`http://127.0.0.1:8000/api/ListNotes/${listnotetID}/`)
+      .then(result=>(this.setState({
+        list_note:result.data
+      })))
   }
 
   handleListItemEdit =(event,itemID,parentlist)=>{
@@ -90,7 +120,23 @@ class ListNoteDetailUpdateView extends React.Component {
 
     render(){
         return(
+
       <div>
+      <form onSubmit={(event,listnoteID)=>this.handleFormSubmit(event, this.props.listnotetID)}>
+      <p>Title { this.state.list_note.note_group}</p>
+        <textarea rows="1" cols="50" name="title" defaultValue = {this.props.listnotetitle}/>
+      <select name="notegroup" id="notegroup">
+            <option value="">_ungrouped_</option>
+            {this.state.note_groups.map((val)=>(
+              val.id == this.state.list_note.note_group ? (
+                <option value={val.id} selected >{val.group_name}</option>
+              ):
+              <option value={val.id}>{val.group_name}</option>
+            ))}
+      </select>
+      <button type="submit">Update</button>
+      </form>
+
       <List
         dataSource={this.state.list_note_entrys}
         bordered
@@ -115,6 +161,7 @@ class ListNoteDetailUpdateView extends React.Component {
           <textarea rows="1" cols="50" name="newlistentry" placeholder='new list item'/>
           <button type="submit">Add</button>
           </form>
+
 
       </div>
     )

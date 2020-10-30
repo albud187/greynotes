@@ -11,15 +11,15 @@ class ListNoteDetailUpdateView extends React.Component {
     list_note_entrys: [],
   }
 
-  componentDidMount(){
-    const listnotetID = this.props.listnotetID
-    axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +listnotetID)
+  fetchNoteGroups = () => {
+    axios.get("http://127.0.0.1:8000/api/NoteGroups/")
     .then(result => {this.setState({
-        list_note_entrys: result.data,
-        list_note:this.props.listnotetID
-        });
-  })
+        note_groups: result.data
+      });
+      console.log(result.data)
+    });
   }
+
 
   handleListItemEdit =(event,itemID,parentlist)=>{
     event.preventDefault()
@@ -85,12 +85,40 @@ class ListNoteDetailUpdateView extends React.Component {
 
   }
 
-  handleChangeStatus
+  handleTitleAndGroup = (event) =>{
+    event.preventDefault()
+  }
 
+  componentDidMount(){
+    this.fetchNoteGroups();
+    const listnotetID = this.props.listnotetID
+    axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +listnotetID)
+    .then(result => {this.setState({
+        list_note_entrys: result.data,
+        list_note:this.props.listnotetID
+        });
+  })
+  }
 
     render(){
         return(
       <div>
+
+      <form onSubmit={(event,listnoteID)=>this.handleFormSubmit(event, this.props.listnotetID)}>
+      <p>Title { this.state.list_note.note_group}</p>
+        <textarea rows="1" cols="50" name="title" defaultValue = {this.props.listnotetitle}/>
+      <select name="notegroup" id="notegroup">
+            <option value="">_ungrouped_</option>
+            {this.state.note_groups.map((val)=>(
+              val.id == this.state.list_note.note_group ? (
+                <option value={val.id} selected >{val.group_name}</option>
+              ):
+              <option value={val.id}>{val.group_name}</option>
+            ))}
+      </select>
+      <button type="submit">Update</button>
+      </form>
+
       <List
         dataSource={this.state.list_note_entrys}
         bordered
