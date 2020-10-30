@@ -4,7 +4,7 @@ import { Component } from 'react';
 import axios from 'axios';
 import TextNotes from './TextNotes.js'
 import ListNotes from './ListNotes.js'
-
+import NoteGroupCreate from '../forms/NoteGroupCreate.js'
 class FilterTextNotes extends Component {
 
   state ={
@@ -56,7 +56,7 @@ class FilterTextNotes extends Component {
 render(){
   return (
       <div>
-
+      <NoteGroupCreate />
     <form  onSubmit={(event)=>this.HandleTextNoteFilterSubmit(event)}>
     <label for="notegroup">NoteGroup: </label>
       <select name="notegroup" id="notegroup">
