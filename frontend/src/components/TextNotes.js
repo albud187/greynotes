@@ -29,7 +29,6 @@ const TextNotes =(props)=>{
       </List.Item>
     )}
   />
-
   )
 }
 
