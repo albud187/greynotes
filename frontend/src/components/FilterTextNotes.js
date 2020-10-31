@@ -6,6 +6,8 @@ import TextNotes from './TextNotes.js'
 import ListNotes from './ListNotes.js'
 import NoteGroupCreate from '../forms/NoteGroupCreate.js'
 import NoteGroupDelete from '../forms/NoteGroupDelete.js'
+import NoteGroupEdit from '../forms/NoteGroupEdit.js'
+
 class FilterTextNotes extends Component {
 
   state ={
@@ -59,8 +61,9 @@ render(){
       <div>
       <NoteGroupCreate />
       <NoteGroupDelete />
+      <NoteGroupEdit />
     <form  onSubmit={(event)=>this.HandleTextNoteFilterSubmit(event)}>
-    <label for="notegroup">NoteGroup: </label>
+    <label for="notegroup">Filter </label>
       <select name="notegroup" id="notegroup">
       <option value="">ALL</option>
       {this.state.note_groups.map((val)=>(

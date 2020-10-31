@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-class NoteGroupDelete extends Component {
+class NoteGroupEdit extends Component {
 
   state ={
     note_groups:[]
@@ -20,18 +20,26 @@ componentDidMount() {
     this.fetchNoteGroups();
   }
 
-  handleDelete=(event) => {
+  handleGroupRename =(event)=>{
     event.preventDefault()
-    const notegroup = event.target.elements.notegroup.value
-    axios.delete(`http://127.0.0.1:8000/api/NoteGroups/${notegroup}/`)
+    const notegroup = event.target.elements.notegroup.value;
+    const newgroupname = event.target.elements.newgroupname.value;
+    axios.put(`http://127.0.0.1:8000/api/NoteGroups/${notegroup}/`,{
+      group_name:newgroupname
+
+    })
+    .then(res=>console.log(res))
+    .catch(err=>console.log(err));
+
   }
+
 
   render() {
     return (
       <div>
 
-      <form onSubmit ={(event)=>this.handleDelete(event)}>
-      <label for="notegroup">Delete </label>
+      <form onSubmit ={(event)=>this.handleGroupRename(event)}>
+      <label for="notegroup">Rename </label>
         <select name="notegroup" id="notegroup">
         {this.state.note_groups.map((val)=>(
           <option value={val.id}>{val.group_name}</option>
@@ -39,15 +47,15 @@ componentDidMount() {
 
         </select>
 
-        <button type="submit">Delete</button>
+        <textarea rows="1" cols="50" name="newgroupname"/>
+
+        <button type="submit">Rename</button>
 
         </form>
         </div>
-
-
 
     )
   }
 }
 
-export default NoteGroupDelete
+export default NoteGroupEdit
