@@ -2,6 +2,8 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 import { List,Card } from 'antd';
+import { Checkbox } from 'antd';
+import ListNoteTaskCheckbox from './ListNoteTaskCheckbox.js'
 
 class ListNoteDetailUpdateView extends React.Component {
 
@@ -140,6 +142,7 @@ class ListNoteDetailUpdateView extends React.Component {
         bordered
         renderItem={item => (
           <List.Item key={item.id}>
+          <ListNoteTaskCheckbox data={item} style={{ position: 'relative', xIndex: 2, width: '10%' }}></ListNoteTaskCheckbox>
 
             <form onSubmit={(event,itemID,parentlist)=>this.handleListItemEdit(event,item.id,item.parent_list)}>
               <textarea rows="1" cols="50" name="listentry" defaultValue = {item.entry_text}/>
@@ -150,7 +153,6 @@ class ListNoteDetailUpdateView extends React.Component {
             onSubmit = {(event,listentryID,parentlist)=>this.handleEntryDelete(event,item.id,item.parent_list)}>
               <button type="submit">**DELETE**</button>
             </form>
-
             </List.Item>
           )}
           />
