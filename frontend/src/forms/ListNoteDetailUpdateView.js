@@ -142,24 +142,29 @@ class ListNoteDetailUpdateView extends React.Component {
         bordered
         renderItem={item => (
           <List.Item key={item.id}>
+
           <ListNoteTaskCheckbox data={item} style={{ position: 'relative', xIndex: 2, width: '10%' }}></ListNoteTaskCheckbox>
 
-            <form onSubmit={(event,itemID,parentlist)=>this.handleListItemEdit(event,item.id,item.parent_list)}>
+            <form
+
+            onSubmit={(event,itemID,parentlist)=>this.handleListItemEdit(event,item.id,item.parent_list)}>
               <textarea rows="1" cols="50" name="listentry" defaultValue = {item.entry_text}/>
-              <button type="submit">Update</button>
+              <button type="submit">**UPDATE**</button>
             </form>
             <form
-            style={{ position: 'relative', xIndex: 2, width: '100%' }}
+            
             onSubmit = {(event,listentryID,parentlist)=>this.handleEntryDelete(event,item.id,item.parent_list)}>
               <button type="submit">**DELETE**</button>
             </form>
+
+
             </List.Item>
           )}
           />
 
           <form onSubmit={(event,parentlist)=>this.handleAddEntry(event,this.state.list_note)}>
           <textarea rows="1" cols="50" name="newlistentry" placeholder='new list item'/>
-          <button type="submit">Add</button>
+          <button type="submit">**ADD**</button>
           </form>
 
       </div>
