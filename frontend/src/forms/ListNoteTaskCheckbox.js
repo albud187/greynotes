@@ -15,30 +15,24 @@ function TrueorFalse(input) {
 class ListNoteTaskCheckbox extends React.Component {
 
   state = {
-    checked:this.props.data.completed,
+    checked: this.props.data.completed,
     testentry: this.props.data.entry_text
-  };
 
-  onChange = e => {
-    console.log('checked = ', e.target.checked);
-    this.setState({
-      checked: e.target.checked,
-    });
   };
 
   onCheck = (event,listentryID) =>{
     event.preventDefault()
     axios.put(`http://127.0.0.1:8000/api/ListNoteEntrysAll/${listentryID}/`,{
-      completed: TrueorFalse(event.target.checked)
+      parent_list: this.props.data.parent_list,
+      completed: event.target.checked
     })
     this.setState({
       checked: event.target.checked,
     });
-    console.log(TrueorFalse(event.target.checked))
+    console.log(event.target.checked)
   }
 
   render() {
-
 
     return (
       <>
