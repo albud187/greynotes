@@ -4,6 +4,8 @@ import axios from 'axios';
 import { List,Card } from 'antd';
 import { Checkbox } from 'antd';
 import ListNoteTaskCheckbox from './ListNoteTaskCheckbox.js'
+import { Row, Col } from 'antd';
+
 
 class ListNoteDetailUpdateView extends React.Component {
 
@@ -136,35 +138,49 @@ class ListNoteDetailUpdateView extends React.Component {
       </select>
       <button type="submit">Update</button>
       </form>
+      <Row>
+      <Col span={120}>
 
       <List
         dataSource={this.state.list_note_entrys}
         bordered
         renderItem={item => (
+          <Row>
           <List.Item key={item.id}>
-
+          <Col span ={1}>
           <ListNoteTaskCheckbox data={item} style={{ position: 'relative', xIndex: 2, width: '10%' }}></ListNoteTaskCheckbox>
+          </Col>
 
+          <Col span ={20}>
             <form
-
             onSubmit={(event,itemID,parentlist)=>this.handleListItemEdit(event,item.id,item.parent_list)}>
-              <textarea rows="1" cols="50" name="listentry" defaultValue = {item.entry_text}/>
-              <button type="submit">**UPDATE**</button>
+
+              <textarea rows="1" cols="60" name="listentry" defaultValue = {item.entry_text}/>
+              <button type="submit">*UPDATE*</button>
+
             </form>
+          </Col>
+
+          <Col span={1}>
             <form
-            
             onSubmit = {(event,listentryID,parentlist)=>this.handleEntryDelete(event,item.id,item.parent_list)}>
-              <button type="submit">**DELETE**</button>
+              <button type="submit">*DELETE*</button>
             </form>
+          </Col>
 
 
             </List.Item>
+            </Row>
+
+
           )}
           />
+          </Col>
+          </Row>
 
           <form onSubmit={(event,parentlist)=>this.handleAddEntry(event,this.state.list_note)}>
           <textarea rows="1" cols="50" name="newlistentry" placeholder='new list item'/>
-          <button type="submit">**ADD**</button>
+          <button type="submit">*ADD*</button>
           </form>
 
       </div>
