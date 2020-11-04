@@ -1,15 +1,15 @@
 from kanban.models import (
-    Article,
-    NoteGroup,
-    TextNote,
-    ListNote,
-    ListNoteEntry)
+    Project,
+    TaskStatus,
+    Task
+)
 
 from .serializers import (
-    ArticleSerializer,
-    NoteGroupSerializer,
-    TextNoteSerializer,
-    MemeTextSerializer)
+    ProjectSerializer,
+    TaskStatusSerializer,
+    TaskSerializer,
+    ProjectNameSerializer,
+    TaskStatusNameSerialzer)
 
 from rest_framework import viewsets
 import random
@@ -17,77 +17,40 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
-class ArticleViewSet(viewsets.ModelViewSet):
-    serializer_class = ArticleSerializer
-    queryset = Article.objects.all()
+from django.core.serializers import serialize as SERIALIZE
 
-class NoteGroupViewSet(viewsets.ModelViewSet):
-    serializer_class = NoteGroupSerializer
-    queryset = NoteGroup.objects.all()
+from rest_framework.generics import (
+    ListAPIView,
+    RetrieveAPIView,
+    CreateAPIView,
+    DestroyAPIView,
+    UpdateAPIView
+)
 
-class TextNoteViewSet(viewsets.ModelViewSet):
-    serializer_class = TextNoteSerializer
-    queryset = TextNote.objects.all()
+class ProjectViewSet(viewsets.ModelViewSet):
+    serializer_class = ProjectSerializer
+    queryset = Project.objects.all()
 
-from rest_framework.response import Response
-from rest_framework import serializers, views
+class TaskStatusViewSet(viewsets.ModelViewSet):
+    serializer_class = TaskStatusSerializer
+    queryset = TaskStatus.objects.all()
 
-def mememify_text(input_text):
-    new_str=''
-    for char in input_text:
-        random_number = random.randint(1,2)
-        if random_number ==1:
-            char=char.lower()
-        if random_number==2:
-            char=char.upper()
-        new_str = new_str+char
-    return(new_str)
-#https://stackoverflow.com/questions/27786308/django-and-rest-api-to-serve-calculation-based-requests
-class MemeTextView(views.APIView):
+class TaskViewSet(viewsets.ModelViewSet):
+    serializer_class = TaskSerializer
+    queryset = Task.objects.all()
 
-    def get(self, request):
-        # Validate the incoming input (provided through query parameters)
-        serializer = MemeTextSerializer(data=request.query_params)
-        serializer.is_valid(raise_exception=True)
+def FilterTask(tasking_status, input_project):
+    task_by_status = Task.objects.filter(Task_Status=tasking_status)
+    output_query = task_by_status.filter(Parent_Project = input_project)
+    return(output_query)
 
-        # Get the model input
-        data = serializer.validated_data
-        textToMeme = data["textToMeme"]
+class ProjectAndStatusTaskQuery(ListAPIView):
+    serialzer_class = TaskSerializer
 
-        # Perform the complex calculations
-        memed_text = mememify_text(textToMeme)
+    def get_queryset(self):
+        tasking_status = self.request.GET['taskingstatus']
+        input_project = self.request.GET['inputproject']
 
-        # Return it in your custom format
-        return Response({
-            "complex_result": memed_text,
-        })
-
-# from rest_framework.generics import (
-#     ListAPIView,
-#     RetrieveAPIView,
-#     CreateAPIView,
-#     DestroyAPIView,
-#     UpdateAPIView
-# )
-#
-#
-#
-# class ArticleListView(ListAPIView):
-#     queryset = Article.objects.all()
-#     serializer_class = ArticleSerializer
-#
-# class ArticleDetailView(RetrieveAPIView):
-#     queryset = Article.objects.all()
-#     serializer_class = ArticleSerializer
-#
-# class ArticleCreateView(CreateAPIView):
-#     queryset = Article.objects.all()
-#     serializer_class = ArticleSerializer
-#
-# class ArticleDeleteView(DestroyAPIView):
-#     queryset = Article.objects.all()
-#     serializer_class = ArticleSerializer
-#
-# class ArticleUpdateView(UpdateAPIView):
-#     queryset = Article.objects.all()
-#     serializer_class = ArticleSerializer
+        if tasking_status:
+            target_queryset = FilterTask(tasking_status, input_project)
+        return(target_queryset)

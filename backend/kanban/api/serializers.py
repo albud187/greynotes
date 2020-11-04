@@ -4,7 +4,7 @@ from kanban.models import (
     Project,
     TaskStatus,
     Task)
-    
+
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
@@ -19,3 +19,9 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = '__all__'
+
+class ProjectNameSerializer(serializers.Serializer):
+    ProjectName = serialzers.CharField()
+
+class TaskStatusNameSerialzer(serializers.Serializer):
+    TaskStatusName = serializers.CharField()
