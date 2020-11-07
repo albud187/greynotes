@@ -13,6 +13,10 @@ import FilterTextNotes from './components/FilterTextNotes'
 import ListNoteListView from './containers/ListNoteListView.js'
 import ListNoteDetailView from './containers/ListNoteDetailView.js'
 import ListNoteCreate from './forms/ListNoteCreate.js'
+
+import Login from './containers/Login.js'
+import Signup from './containers/Signup.js'
+
 const BaseRouter =() => (
   <div>
     <Route exact path ='/' component ={Home} />
@@ -29,6 +33,9 @@ const BaseRouter =() => (
     <Route exact path='/list_note_list' component = {ListNoteListView} />
     <Route exact path='/list_note/:listnoteID' component = {ListNoteDetailView} />
     <Route exact path ='/create_list' component ={ListNoteCreate}/>
+
+    <Route exact path='/login/' component = {Login}/>
+    <Route exact path='/signup/' component = {Signup}/>
 
 
 

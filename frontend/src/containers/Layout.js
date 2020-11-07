@@ -9,9 +9,9 @@ const CustomLayout = (props)=>{
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          <Menu.Item key="1">Notes</Menu.Item>
-          <Menu.Item key="2">KanBan</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
+          <Menu.Item key="1"><Link to='/login/'>Login</Link></Menu.Item>
+          <Menu.Item key="2"><Link to='/signup/'>Sign up</Link></Menu.Item>
+          <Menu.Item key="3">placeholder 2</Menu.Item>
         </Menu>
       </Header>
       <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
