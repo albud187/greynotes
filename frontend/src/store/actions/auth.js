@@ -38,12 +38,15 @@ export const checkAuthTimeout = expirationTime => {
 }
 
 export const authLogin = (username, password) => {
+  console.log(username, password, 'test123456789')
     return dispatch => {
         dispatch(authStart());
         axios.post('http://127.0.0.1:8000/rest-auth/login/', {
             username: username,
+            email:"",
             password: password
         })
+
         .then(res => {
             const token = res.data.key;
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
@@ -51,6 +54,7 @@ export const authLogin = (username, password) => {
             localStorage.setItem('expirationDate', expirationDate);
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600));
+            console.log(token)
         })
         .catch(err => {
             dispatch(authFail(err))

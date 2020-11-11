@@ -63,7 +63,7 @@ render(){
       <NoteGroupDelete />
       <NoteGroupEdit />
     <form  onSubmit={(event)=>this.HandleTextNoteFilterSubmit(event)}>
-    <label for="notegroup">Filter </label>
+    <label htmlFor="notegroup">Filter </label>
       <select name="notegroup" id="notegroup">
       <option value="">ALL</option>
       {this.state.note_groups.map((val)=>(

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom';
-import 'antd/dist/antd.css'
+import {connect} from 'react-redux'
 import BaseRouter from './routes';
+import 'antd/dist/antd.css'
 import CustomLayout from './containers/Layout.js'
 
 import * as actions from './store/actions/auth.js'
-import {connect} from 'react-redux'
 
 class App extends Component {
   render(){
@@ -33,4 +33,4 @@ const mapDispatchToProps = dispatch =>{
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);
