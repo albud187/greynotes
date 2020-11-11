@@ -14,7 +14,8 @@ class Login extends React.Component {
     const username = event.target.elements.userName.value
     const password = event.target.elements.pwd.value
     this.props.onAuth(username, password);
-    alert('test')
+    this.props.history.push('/');
+
     };
 
 

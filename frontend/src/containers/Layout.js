@@ -9,9 +9,18 @@ const CustomLayout = (props)=>{
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <div className="logo" />
         <Menu theme="dark" mode="horizontal">
+
           <Menu.Item key="1"><Link to='/login/'>Login</Link></Menu.Item>
           <Menu.Item key="2"><Link to='/signup/'>Sign up</Link></Menu.Item>
-          <Menu.Item key="3">placeholder 2</Menu.Item>
+
+          {props.isAuthenticated ?
+          <Menu.Item key="3">IS AUTH</Menu.Item>
+          :
+          <Menu.Item key="3">NOT AUTH</Menu.Item>
+          }
+
+
+
         </Menu>
       </Header>
       <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
