@@ -1,2 +1,6 @@
 axios example codesandbox
 https://codesandbox.io/s/rm4pyq9m0o?file=/src/index.js
+
+create function on backend, takes in token, returns userid
+
+render stuff based on userid
