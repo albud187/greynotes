@@ -14,7 +14,7 @@ const CustomLayout = (props)=>{
         <div className="logo" />
         <Menu theme="dark" mode="horizontal">
 
-          {props.isAuthenticated ?
+          {localStorage['token'] ?
             <Menu.Item key="1" onClick = {props.logout} >Logout</Menu.Item>
 
           :
@@ -24,8 +24,8 @@ const CustomLayout = (props)=>{
 
           <Menu.Item key="2"><Link to='/signup/'>Sign up</Link></Menu.Item>
 
-          {props.isAuthenticated ?
-          <Menu.Item key="3">IS AUTH - {props.token}</Menu.Item>
+          {localStorage['token'] ?
+          <Menu.Item key="3">IS AUTH - {localStorage['token']}</Menu.Item>
           :
           <Menu.Item key="3">NOT AUTH</Menu.Item>
           }
