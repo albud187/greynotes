@@ -11,14 +11,14 @@ from articles.api.views import (
 
 from rest_framework.routers import DefaultRouter
 from django.urls import path
-
+from djreact.user_auth_api.views import TokenViewSet
 router = DefaultRouter()
 router.register('NoteGroups', NoteGroupViewSet, basename='NoteGroups')
 router.register('TextNotes', TextNoteViewSet, basename='TextNotes')
 router.register('ListNotes', ListNoteViewSet, basename='ListNotes')
 router.register('ListNoteEntrysAll', ListNoteEntryViewSet, basename='ListNoteEntrys')
 router.register('ListNoteEntrysList', ListNoteEntrysListViewSet, basename='ListNoteEntrysList')
-
+router.register('Tokens', TokenViewSet, basename='Tokens')
 function_views=[
     path('meme_text', MemeTextView.as_view(), name='meme_text'),
     path('query_text_notes', QueryTextNotesView.as_view(), name='query_text_notes'),

@@ -3,8 +3,9 @@ import {Link, withRouter} from 'react-router-dom'
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
-const { Header, Content, Footer } = Layout;
+import axios from 'axios'
 
+const { Header, Content, Footer } = Layout;
 
 const CustomLayout = (props)=>{
   return(
@@ -24,7 +25,7 @@ const CustomLayout = (props)=>{
           <Menu.Item key="2"><Link to='/signup/'>Sign up</Link></Menu.Item>
 
           {props.isAuthenticated ?
-          <Menu.Item key="3">IS AUTH - </Menu.Item>
+          <Menu.Item key="3">IS AUTH - {props.token}</Menu.Item>
           :
           <Menu.Item key="3">NOT AUTH</Menu.Item>
           }

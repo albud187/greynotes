@@ -11,8 +11,8 @@ from django.core.serializers import serialize as SERIALIZE
 
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from .serialzers import TokenSerializer
+from .serializers import TokenSerializer
 
-class TokenViewSet(viewsets.ModelViewset):
+class TokenViewSet(viewsets.ModelViewSet):
     serializer_class = TokenSerializer
     queryset = Token.objects.all()
