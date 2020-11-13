@@ -15,6 +15,7 @@ class Login extends React.Component {
     const password = event.target.elements.pwd.value
     this.props.onAuth(username, password);
     this.props.history.push('/');
+    console.log('token is ' + localStorage.getItem('token'))
 
     };
 

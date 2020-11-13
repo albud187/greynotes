@@ -9,6 +9,7 @@ class TextNoteListView extends React.Component{
   state ={
     text_notes: [],
     userinfo:null,
+    tokeninfo:null,
   }
 
   fetchTextNotes = () => {
@@ -31,6 +32,10 @@ class TextNoteListView extends React.Component{
   }
 
   componentDidMount() {
+    const useridtoken = localStorage['token']
+    this.setState({
+      tokeninfo:useridtoken
+    })
     this.fetchUser();
     this.fetchTextNotes();
   }
@@ -39,13 +44,11 @@ class TextNoteListView extends React.Component{
     return(
       <div>
       <h1> TextNoteListView.js</h1>
-      <h1> {this.props.token} </h1>
+      <h1> useridtoken={this.state.tokeninfo} </h1>
       { this.state.userinfo ?
         <h1> userid is = {this.state.userinfo.user} </h1>
         :
         <h1>userid here </h1>
-
-
       }
       <h2><Link to="/create_note">New Note</Link></h2>
 
