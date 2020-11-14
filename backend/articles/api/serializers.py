@@ -14,7 +14,7 @@ class NoteGroupSerializer(serializers.ModelSerializer):
 class TextNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = TextNote
-        fields =('id', 'title', 'content', 'note_group','note_group_name','archived','date_created')
+        fields =('id', 'author', 'title', 'content', 'note_group','note_group_name','archived','date_created')
 
 class ListNoteSerializer(serializers.ModelSerializer):
     class Meta:

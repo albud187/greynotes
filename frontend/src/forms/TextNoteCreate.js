@@ -30,7 +30,8 @@ class TextNoteCreate extends React.Component {
     axios.post('http://127.0.0.1:8000/api/TextNotes/', {
       title: title,
       content: content,
-      note_group: notegroup
+      note_group: notegroup,
+      author: localStorage['userid']
     })
       .then(res=>console.log(res))
       .catch(err=>console.log(err));
