@@ -19,7 +19,7 @@ class TextNoteSerializer(serializers.ModelSerializer):
 class ListNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = ListNote
-        fields =('id','note_group','title','archived','date_created' )
+        fields =('id','author','note_group','title','archived','date_created' )
 
 class ListNoteEntrySerializer(serializers.ModelSerializer):
     class Meta:

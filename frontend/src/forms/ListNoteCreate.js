@@ -27,13 +27,15 @@ class ListNoteCreate extends React.Component {
   console.log(title);
   axios.post('http://127.0.0.1:8000/api/ListNotes/', {
     title: title,
-    note_group: notegroup
+    note_group: notegroup,
+    author: localStorage['userid']
 
   })
     .then(res=>console.log(res))
     .catch(err=>console.log(err));
     console.log(title)
     console.log(notegroup)
+    
 
 
 }
