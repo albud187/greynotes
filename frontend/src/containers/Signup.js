@@ -11,19 +11,20 @@ class Signup extends React.Component {
   confirmDirty: false,
 };
 
-handleSubmit = (e) => {
-  e.preventDefault();
-  this.props.form.validateFieldsAndScroll((err, values) => {
-    if (!err) {
-      this.props.onAuth(
-          values.userName,
-          values.email,
-          values.password,
-          values.confirm
-      );
-      this.props.history.push('/');
-    }
-  });
+handleSubmit = (event) => {
+  event.preventDefault();
+  const username = event.target.elements.userName.value
+  const email = event.target.elements.email.value
+  const password1 = event.target.elements.password1.value
+  const password2 = event.target.elements.password2.value
+  this.props.onAuth(
+    username,
+    email,
+    password1,
+    password2
+  )
+  this.props.history.push('/');
+
 }
 
 handleConfirmBlur = (e) => {
@@ -50,8 +51,24 @@ handleConfirmBlur = (e) => {
 
   render() {
     return (
-      <div>signup class component</div>
-    )
+      <div>
+
+            <form onSubmit={(event)=>this.handleSubmit(event)} class="loginform">
+                <input name='userName' placeholder= "username"/>
+                <br/>
+                <input name='email' placeholder= "email"/>
+                <br/>
+                <input type="password" name="password1" placeholder="password" />
+                <br/>
+                <input type="password" name="password2" placeholder="password" />
+                <br/>
+
+                <button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
+                    Signup
+                </button>
+
+              </form>
+          </div>    )
   }
 }
 

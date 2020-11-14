@@ -16,6 +16,7 @@ class ListNoteCreate extends React.Component {
   }
 
   componentDidMount() {
+    
     this.fetchNoteGroups();
   }
 
@@ -27,6 +28,7 @@ class ListNoteCreate extends React.Component {
   axios.post('http://127.0.0.1:8000/api/ListNotes/', {
     title: title,
     note_group: notegroup
+
   })
     .then(res=>console.log(res))
     .catch(err=>console.log(err));

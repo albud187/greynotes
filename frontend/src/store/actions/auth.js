@@ -23,7 +23,8 @@ export const authFail = error => {
 
 export const logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('expirationDate');
+    localStorage.removeItem('expirationDate')
+    localStorage.removeItem('userid');
     return {
         type: actionTypes.AUTH_LOGOUT
     };
@@ -55,12 +56,20 @@ export const authLogin = (username, password) => {
             dispatch(authSuccess(token));
             dispatch(checkAuthTimeout(3600));
             console.log(token)
+
+            axios.get(`http://127.0.0.1:8000/api/Tokens/${token}/`)
+              .then(result =>{
+                const userid = result.data.user
+                localStorage.setItem('userid', userid);
+              })
         })
         .catch(err => {
             dispatch(authFail(err))
         })
+
+
     }
-  
+
 }
 
 export const authSignup = (username, email, password1, password2) => {
