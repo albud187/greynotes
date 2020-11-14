@@ -6,6 +6,8 @@ from datetime import datetime
 # Create your models here.
 
 class NoteGroup(models.Model):
+    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+
     slug = models.SlugField(blank=True, null=True)
 
     group_name = models.CharField(max_length=120)

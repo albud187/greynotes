@@ -67,32 +67,25 @@ def mememify_text(input_text):
                 char = char
         new_str = new_str+char
     return(new_str)
-#https://stackoverflow.com/questions/27786308/django-and-rest-api-to-serve-calculation-based-requests
 class MemeTextView(views.APIView):
 
     def get(self, request):
-        # Validate the incoming input (provided through query parameters)
         serializer = MemeTextSerializer(data=request.query_params)
         serializer.is_valid(raise_exception=True)
 
-        # Get the model input
         data = serializer.validated_data
         textToMeme = data["textToMeme"]
 
-        # Perform the complex calculations
         memed_text = mememify_text(textToMeme)
 
-        # Return it in your custom format
         return Response({
             "complex_result": memed_text,
         })
 
-def filterTextNote(grouping):
+def filterTextNote(grouping,userid):
     groupname = NoteGroup.objects.filter(group_name=grouping)[0]
     target_query = TextNote.objects.filter(note_group=groupname)
-    # target_query_json = []
-    # for item in target_query:
-    #     target_query_json.append(SERIALIZE('json',[item]))
+    target_query = target_query.filter(author=userid)
     return(target_query)
 
 class QueryTextNotesView(ListAPIView):
@@ -100,12 +93,12 @@ class QueryTextNotesView(ListAPIView):
 
     def get_queryset(self):
         grouping = self.request.GET['groupname']
+        userid=self.request.GET['userid']
         if grouping:
-            print(grouping)
-            target_queryset = filterTextNote(grouping)
+            target_queryset = filterTextNote(grouping,userid)
 
         else:
-            target_queryset = TextNote.objects.all()
+            target_queryset = TextNote.objects.filter(author=userid)
         return(target_queryset)
 
 def filterListNoteEntry(parentlist):
@@ -123,12 +116,11 @@ class ListNoteEntrysListViewSet(viewsets.ModelViewSet):
             target_queryset = filterListNoteEntry(parentlist)
         return(target_queryset)
 
-def filterListNote(grouping):
+def filterListNote(grouping,userid):
     groupname = NoteGroup.objects.filter(group_name=grouping)[0]
     target_query = ListNote.objects.filter(note_group=groupname)
-    # target_query_json = []
-    # for item in target_query:
-    #     target_query_json.append(SERIALIZE('json',[item]))
+    target_query = target_query.filter(author=userid)
+
     return(target_query)
 
 class QueryListNotesView(ListAPIView):
@@ -136,20 +128,18 @@ class QueryListNotesView(ListAPIView):
 
     def get_queryset(self):
         grouping = self.request.GET['groupname']
+        userid=self.request.GET['userid']
         if grouping:
-            print(grouping)
-            target_queryset = filterListNote(grouping)
+            target_queryset = filterListNote(grouping,userid)
 
         else:
-            target_queryset = ListNote.objects.all()
+            target_queryset = ListNote.objects.filter(author=userid)
         return(target_queryset)
 
 
 def filterTextNoteUser(userid):
     target_query = TextNote.objects.filter(author=userid)
-    # target_query_json = []
-    # for item in target_query:
-    #     target_query_json.append(SERIALIZE('json',[item]))
+
     return(target_query)
 
 class SortTextNoteByUserView(ListAPIView):
@@ -163,9 +153,7 @@ class SortTextNoteByUserView(ListAPIView):
 
 def filterListNoteUser(userid):
     target_query = ListNote.objects.filter(author=userid)
-    # target_query_json = []
-    # for item in target_query:
-    #     target_query_json.append(SERIALIZE('json',[item]))
+
     return(target_query)
 
 class SortListNoteByUserView(ListAPIView):

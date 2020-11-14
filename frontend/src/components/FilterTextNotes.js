@@ -34,7 +34,7 @@ class FilterTextNotes extends Component {
     console.log(groupname);
 
     axios.get('http://127.0.0.1:8000/api/query_list_notes'+
-    '?groupname='+groupname, {
+    '?groupname='+groupname +'&userid='+localStorage['userid'], {
       groupname: groupname
     })
     .then(res => {
@@ -45,7 +45,7 @@ class FilterTextNotes extends Component {
   });
 
     axios.get('http://127.0.0.1:8000/api/query_text_notes'+
-    '?groupname='+groupname, {
+    '?groupname='+groupname+'&userid='+localStorage['userid'], {
       groupname: groupname
     })
     .then(res => {
