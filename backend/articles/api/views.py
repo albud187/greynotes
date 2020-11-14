@@ -143,3 +143,20 @@ class QueryListNotesView(ListAPIView):
         else:
             target_queryset = ListNote.objects.all()
         return(target_queryset)
+
+
+def filterTextNoteUser(userid):
+    target_query = TextNote.objects.filter(author=userid)
+    # target_query_json = []
+    # for item in target_query:
+    #     target_query_json.append(SERIALIZE('json',[item]))
+    return(target_query)
+
+class SortTextNoteByUserView(ListAPIView):
+    serializer_class = TextNoteSerializer
+
+    def get_queryset(self):
+        userid = self.request.GET['userid']
+        if userid:
+            target_queryset = filterTextNoteUser(userid)
+        return(target_queryset)
