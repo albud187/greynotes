@@ -160,3 +160,19 @@ class SortTextNoteByUserView(ListAPIView):
         if userid:
             target_queryset = filterTextNoteUser(userid)
         return(target_queryset)
+
+def filterListNoteUser(userid):
+    target_query = ListNote.objects.filter(author=userid)
+    # target_query_json = []
+    # for item in target_query:
+    #     target_query_json.append(SERIALIZE('json',[item]))
+    return(target_query)
+
+class SortListNoteByUserView(ListAPIView):
+    serializer_class = ListNoteSerializer
+
+    def get_queryset(self):
+        userid = self.request.GET['userid']
+        if userid:
+            target_queryset = filterListNoteUser(userid)
+        return(target_queryset)

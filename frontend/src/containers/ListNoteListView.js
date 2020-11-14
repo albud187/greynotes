@@ -10,7 +10,7 @@ class ListNoteListView extends React.Component{
   }
 
   fetchListNotes = () => {
-    axios.get("http://127.0.0.1:8000/api/ListNotes/").then(res => {
+    axios.get(`http://127.0.0.1:8000/api/list_notes_by_user?userid=${localStorage['userid']}`).then(res => {
       this.setState({
         list_notes: res.data
       });

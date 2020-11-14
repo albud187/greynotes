@@ -25,7 +25,7 @@ const CustomLayout = (props)=>{
           <Menu.Item key="2"><Link to='/signup/'>Sign up</Link></Menu.Item>
 
           {localStorage['token'] ?
-          <Menu.Item key="3">IS AUTH - {localStorage['token']}</Menu.Item>
+          <Menu.Item key="3">IS AUTH - {localStorage['userid']}</Menu.Item>
           :
           <Menu.Item key="3">NOT AUTH</Menu.Item>
           }
