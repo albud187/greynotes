@@ -164,3 +164,15 @@ class SortListNoteByUserView(ListAPIView):
         if userid:
             target_queryset = filterListNoteUser(userid)
         return(target_queryset)
+
+def filterNoteGroupUser(userid):
+    target_query = NoteGroup.objects.filter(author=userid)
+    return(target_query)
+
+class SortNoteGroupByUserView(ListAPIView):
+    serializer_class = NoteGroupSerializer
+
+    def get_queryset(self):
+        userid=self.request.GET['userid']
+        target_queryset =filterNoteGroupUser(userid)
+        return(target_queryset)

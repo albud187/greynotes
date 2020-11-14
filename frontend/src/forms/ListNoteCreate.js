@@ -7,7 +7,7 @@ class ListNoteCreate extends React.Component {
   }
 
   fetchNoteGroups = () => {
-    axios.get("http://127.0.0.1:8000/api/NoteGroups/").then(result => {
+    axios.get("http://127.0.0.1:8000/api/notegroups_by_user?userid="+localStorage['userid']).then(result => {
       this.setState({
         note_groups: result.data
       });
@@ -16,7 +16,7 @@ class ListNoteCreate extends React.Component {
   }
 
   componentDidMount() {
-    
+
     this.fetchNoteGroups();
   }
 

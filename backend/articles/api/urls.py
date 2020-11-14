@@ -8,7 +8,8 @@ from articles.api.views import (
     ListNoteEntrysListViewSet,
     QueryListNotesView,
     SortTextNoteByUserView,
-    SortListNoteByUserView
+    SortListNoteByUserView,
+    SortNoteGroupByUserView
 )
 
 from rest_framework.routers import DefaultRouter
@@ -27,8 +28,8 @@ function_views=[
     path('query_text_notes', QueryTextNotesView.as_view(), name='query_text_notes'),
     path('query_list_notes', QueryListNotesView.as_view(), name='query_list_notes'),
     path('text_notes_by_user', SortTextNoteByUserView.as_view(), name='text_notes_by_user'),
-    path('list_notes_by_user', SortListNoteByUserView.as_view(), name='list_notes_by_user')
-
+    path('list_notes_by_user', SortListNoteByUserView.as_view(), name='list_notes_by_user'),
+    path('notegroups_by_user', SortNoteGroupByUserView.as_view(), name='notegroups_by_user')
     # path('list_note_entrys_list', ListNoteEntrysView.as_view(), name='list_note_entrys')
 ]
 urlpatterns = router.urls + function_views

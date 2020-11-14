@@ -6,7 +6,8 @@ class NoteGroupCreate extends Component {
     event.preventDefault()
     const notegroup = event.target.elements.notegroup.value
     axios.post('http://127.0.0.1:8000/api/NoteGroups/',{
-      group_name:notegroup
+      group_name:notegroup,
+      author:localStorage['userid']
     })
   }
 
