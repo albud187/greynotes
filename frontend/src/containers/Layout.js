@@ -30,6 +30,9 @@ const CustomLayout = (props)=>{
           <Menu.Item key="3">NOT AUTH</Menu.Item>
           }
 
+          <Menu.Item key="4"><Link to='/'>Home</Link></Menu.Item>
+
+
         </Menu>
       </Header>
       <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
