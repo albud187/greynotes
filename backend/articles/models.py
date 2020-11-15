@@ -6,7 +6,7 @@ from datetime import datetime
 # Create your models here.
 
 class NoteGroup(models.Model):
-    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     slug = models.SlugField(blank=True, null=True)
 
@@ -44,7 +44,7 @@ class NoteGroup(models.Model):
 
 
 class TextNote(models.Model):
-    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     note_group = models.ForeignKey(NoteGroup, null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length = 120)
     archived = models.BooleanField(default=False)
@@ -59,7 +59,7 @@ class TextNote(models.Model):
         return(self.note_group.group_name)
 
 class ListNote(models.Model):
-    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     note_group = models.ForeignKey(NoteGroup, null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length = 120)
     archived = models.BooleanField(default=False)
