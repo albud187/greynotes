@@ -66,10 +66,7 @@ export const authLogin = (username, password) => {
         .catch(err => {
             dispatch(authFail(err))
         })
-
-
     }
-
 }
 
 export const authSignup = (username, email, password1, password2) => {
