@@ -66,6 +66,7 @@ export const authLogin = (username, password) => {
         })
         .catch(err => {
             dispatch(authFail(err))
+
         })
     }
 }

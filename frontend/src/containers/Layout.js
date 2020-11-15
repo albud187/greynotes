@@ -16,7 +16,6 @@ const CustomLayout = (props)=>{
 
           {localStorage['token'] ?
             <Menu.Item onClick = {props.logout} >Logout</Menu.Item>
-
           :
           <Menu.Item ><Link to='/login/'>Login</Link></Menu.Item>
           }

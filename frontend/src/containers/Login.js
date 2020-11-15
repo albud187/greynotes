@@ -10,13 +10,13 @@ const FormItem = Form.Item;
 
 class Login extends React.Component {
   handleSubmit = (event) => {
-    event.preventDefault();
+    this.forceUpdate()
     const username = event.target.elements.userName.value
     const password = event.target.elements.pwd.value
     this.props.onAuth(username, password);
     this.props.history.push('/');
     console.log('token is ' + localStorage.getItem('token'))
-
+    this.forceUpdate()
     };
 
 
