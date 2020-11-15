@@ -28,6 +28,7 @@ export const logout = () => {
     return {
         type: actionTypes.AUTH_LOGOUT
     };
+     window.location.reload(false)
 }
 
 export const checkAuthTimeout = expirationTime => {

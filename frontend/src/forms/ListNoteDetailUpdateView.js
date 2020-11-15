@@ -6,21 +6,26 @@ import { Checkbox } from 'antd';
 import ListNoteTaskCheckbox from './ListNoteTaskCheckbox.js'
 import { Row, Col } from 'antd';
 
-const mystyle = {
-     position: "fixed",
-     left: "535px"
-
-   };
-
 const textstyle = {
   position: "relative",
 
 }
 
+
+
+const updatestyle = {
+     position: "relative",
+     left: "25px",
+     bottom:"10px"
+
+   };
+
+
+
 const delstyle ={
   position: "relative",
-  left: "75px",
-  bottom: "3px"
+  left: "25px",
+  bottom:"5px"
 }
 
 const rowstyle = {
@@ -183,7 +188,7 @@ class ListNoteDetailUpdateView extends React.Component {
                   </div>
                 </th>
                 <th>
-                  <div style={mystyle}>
+                  <div style={updatestyle}>
                     <button type="submit">*UPDATE*</button>
                   </div>
                 </th>
