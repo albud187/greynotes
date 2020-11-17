@@ -8,7 +8,14 @@ import {Checkbox} from 'antd'
 import axios from 'axios'
 
 const TextNotes =(props)=>{
-
+  var ItemInfo ='blank'
+  const ChangeStatus = (event,itemid) =>{
+  event.preventDefault()
+    console.log('test')
+    axios.get(`http://127.0.0.1:8000/api/TextNotes/${itemid}/`)
+      .then(res=>{ItemInfo=res.data})
+      console.log(ItemInfo)
+  }
   return(
 
   <List
@@ -27,7 +34,8 @@ const TextNotes =(props)=>{
         <p><strong>date created</strong> : {item.date_created}</p>
         <p><strong>group</strong>: {item.note_group_name}</p>
         <Checkbox
-        checked={item.archived}>
+        checked={item.archived}
+        onChange={(event)=>ChangeStatus(event,item)}>
         Archive
         </Checkbox>
         </Card>
