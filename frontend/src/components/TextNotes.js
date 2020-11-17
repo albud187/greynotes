@@ -5,6 +5,8 @@ import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 import { Row, Col, Divider } from 'antd';
 import { Card } from 'antd';
 import {Checkbox} from 'antd'
+import axios from 'axios'
+
 const TextNotes =(props)=>{
 
   return(
@@ -25,8 +27,7 @@ const TextNotes =(props)=>{
         <p><strong>date created</strong> : {item.date_created}</p>
         <p><strong>group</strong>: {item.note_group_name}</p>
         <Checkbox
-
-        >
+        checked={item.archived}>
         Archive
         </Checkbox>
         </Card>

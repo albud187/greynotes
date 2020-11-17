@@ -11,16 +11,12 @@ const textstyle = {
 
 }
 
-
-
 const updatestyle = {
      position: "relative",
      left: "25px",
      bottom:"10px"
 
    };
-
-
 
 const delstyle ={
   position: "relative",

@@ -2,7 +2,6 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import Home from './components/Home.js'
 
-import Placeholder from './components/placeholder.js'
 import MemeTextGen from './components/MemeTextGen.js'
 
 import TextNoteListView from './containers/TextNoteListView.js'
@@ -23,7 +22,6 @@ const BaseRouter =() => (
 
     <Route exact path ='/create-article/' component ={TextNoteCreate} />
     <Route exact path='/meme-text-gen/' component = {MemeTextGen} />
-    <Route exact path='/placeholder' component = {Placeholder} />
 
     <Route exact path='/text_note_list' component = {TextNoteListView} />
     <Route exact path='/filter_notes' component = {FilterTextNotes} />
@@ -36,9 +34,6 @@ const BaseRouter =() => (
 
     <Route exact path='/login/' component = {Login}/>
     <Route exact path='/signup/' component = {Signup}/>
-
-
-
   </div>
 )
 
