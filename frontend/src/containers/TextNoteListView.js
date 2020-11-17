@@ -5,31 +5,48 @@ import { Checkbox } from 'antd';
 
 import TextNotes from '../components/TextNotes.js'
 import {Link} from 'react-router-dom'
+
+function checkArchived(entry){
+  return(!entry['archived'])
+}
+
 class TextNoteListView extends React.Component{
 
   state ={
-    text_notes: [],
+    active_text_notes: [],
     text_archive_display:false,
-    text_notes_active:[]
+    all_text_notes:[]
   }
 
-  fetchTextNotes = () => {
+  fetchActiveTextNotes = () => {
     axios.get(`http://127.0.0.1:8000/api/text_notes_by_user?userid=${localStorage['userid']}`).then(res => {
       this.setState({
-        text_notes: res.data
+        active_text_notes: res.data.filter(checkArchived)
+      });
+      console.log(res.data)
+    });
+  }
+
+  fetchAllTextNotes = () => {
+    axios.get(`http://127.0.0.1:8000/api/text_notes_by_user?userid=${localStorage['userid']}`).then(res => {
+      this.setState({
+        all_text_notes: res.data
       });
       console.log(res.data)
     });
   }
 
   changeTextArchiveDisplay = (event) => {
-    event.preventDefault()
-    console.log('status changed')
+    const status = this.state.text_archive_display
+    this.setState({
+      text_archive_display: !status
+    })
+    console.log(status)
   }
 
   componentDidMount() {
-
-    this.fetchTextNotes();
+    this.fetchAllTextNotes();
+    this.fetchActiveTextNotes();
   }
 
   render(){
@@ -39,6 +56,7 @@ class TextNoteListView extends React.Component{
         <h1>
 
           <Checkbox
+          checked={this.state.text_archive_display}
           onChange = {(event)=>this.changeTextArchiveDisplay(event)}
           >
           Display Archived Text Notes
@@ -51,7 +69,12 @@ class TextNoteListView extends React.Component{
 
       <h2><Link to="/create_note">New Note</Link></h2>
 
-        <TextNotes data ={this.state.text_notes}/>
+      {this.state.text_archive_display ?
+        <TextNotes data ={this.state.all_text_notes}/>
+        :
+        <TextNotes data ={this.state.active_text_notes}/>
+      }
+
 
       </div>
     )
