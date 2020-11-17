@@ -35,7 +35,7 @@ const TextNotes =(props)=>{
         <p><strong>group</strong>: {item.note_group_name}</p>
         <Checkbox
         checked={item.archived}
-        onChange={(event)=>ChangeStatus(event,item)}>
+        onChange={(event)=>ChangeStatus(event,item.id)}>
         Archive
         </Checkbox>
         </Card>
