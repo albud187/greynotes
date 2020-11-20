@@ -3,7 +3,8 @@ import axios from 'axios';
 
 class ListNoteCreate extends React.Component {
   state ={
-    note_groups: []
+    note_groups: [],
+    userid:''
   }
 
   fetchNoteGroups = () => {
@@ -15,8 +16,15 @@ class ListNoteCreate extends React.Component {
     });
   }
 
+  fetchUserId = () => {
+    axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+      this.setState({
+        userid:result.data.user
+      })
+    })
+  }
   componentDidMount() {
-
+    this.fetchUserId();
     this.fetchNoteGroups();
   }
 
@@ -28,14 +36,14 @@ class ListNoteCreate extends React.Component {
   axios.post('http://127.0.0.1:8000/api/ListNotes/', {
     title: title,
     note_group: notegroup,
-    author: localStorage['userid']
+    author: this.state.userid
 
   })
     .then(res=>console.log(res))
     .catch(err=>console.log(err));
     console.log(title)
     console.log(notegroup)
-    
+
 
 
 }
