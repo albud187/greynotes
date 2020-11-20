@@ -21,6 +21,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import serializers, views
+from rest_framework.authtoken.models import Token
 
 from django.core.serializers import serialize as SERIALIZE
 
@@ -146,10 +147,14 @@ class SortTextNoteByUserView(ListAPIView):
     serializer_class = TextNoteSerializer
 
     def get_queryset(self):
-        userid = self.request.GET['userid']
+        token = self.request.GET['token']
+        userid= Token.objects.filter(key=token)[0].user.id
         if userid:
             target_queryset = filterTextNoteUser(userid)
         return(target_queryset)
+
+
+
 
 def filterListNoteUser(userid):
     target_query = ListNote.objects.filter(author=userid)
