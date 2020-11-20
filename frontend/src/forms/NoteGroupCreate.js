@@ -4,7 +4,7 @@ import axios from 'axios'
 class NoteGroupCreate extends Component {
 
   state ={
-    author:''
+    userid:''
   }
 
   handleFormSubmit = (event)=>{
@@ -12,10 +12,21 @@ class NoteGroupCreate extends Component {
     const notegroup = event.target.elements.notegroup.value
     axios.post('http://127.0.0.1:8000/api/NoteGroups/',{
       group_name:notegroup,
-      author:localStorage['userid']
+      author:this.state.userid
     })
   }
 
+  fetchUserId = () => {
+    axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+      this.setState({
+        userid:result.data.user
+      })
+    })
+  }
+
+  componentDidMount() {
+    this.fetchUserId();
+  }
   render() {
     return (
       <div>

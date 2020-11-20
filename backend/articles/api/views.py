@@ -165,7 +165,8 @@ class SortListNoteByUserView(ListAPIView):
     serializer_class = ListNoteSerializer
 
     def get_queryset(self):
-        userid = self.request.GET['userid']
+        token = self.request.GET['token']
+        userid= Token.objects.filter(key=token)[0].user.id
         if userid:
             target_queryset = filterListNoteUser(userid)
         return(target_queryset)
@@ -178,6 +179,7 @@ class SortNoteGroupByUserView(ListAPIView):
     serializer_class = NoteGroupSerializer
 
     def get_queryset(self):
-        userid=self.request.GET['userid']
+        token = self.request.GET['token']
+        userid= Token.objects.filter(key=token)[0].user.id
         target_queryset =filterNoteGroupUser(userid)
         return(target_queryset)

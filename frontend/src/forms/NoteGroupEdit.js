@@ -4,11 +4,12 @@ import axios from 'axios'
 class NoteGroupEdit extends Component {
 
   state ={
-    note_groups:[]
+    note_groups:[],
+    userid:''
   }
 
   fetchNoteGroups = () => {
-  axios.get("http://127.0.0.1:8000/api/notegroups_by_user?userid="+localStorage['userid']).then(result => {
+  axios.get("http://127.0.0.1:8000/api/notegroups_by_user?token="+localStorage['token']).then(result => {
     this.setState({
       note_groups: result.data
     });
@@ -16,7 +17,15 @@ class NoteGroupEdit extends Component {
   });
 }
 
+fetchUserId = () => {
+  axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+    this.setState({
+      userid:result.data.user
+    })
+  })
+}
 componentDidMount() {
+    this.fetchUserId()
     this.fetchNoteGroups();
   }
 
@@ -26,7 +35,7 @@ componentDidMount() {
     const newgroupname = event.target.elements.newgroupname.value;
     axios.put(`http://127.0.0.1:8000/api/NoteGroups/${notegroup}/`,{
       group_name:newgroupname,
-      author: localStorage['userid']
+      author: this.state.userid
 
 
     })

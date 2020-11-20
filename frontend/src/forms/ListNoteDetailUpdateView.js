@@ -38,7 +38,7 @@ class ListNoteDetailUpdateView extends React.Component {
   }
 
   fetchNoteGroups = () => {
-    axios.get("http://127.0.0.1:8000/api/notegroups_by_user?userid="+localStorage['userid'])
+    axios.get("http://127.0.0.1:8000/api/notegroups_by_user?token="+localStorage['token'])
     .then(result => {this.setState({
         note_groups: result.data
       });
