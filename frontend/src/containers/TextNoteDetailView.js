@@ -6,11 +6,21 @@ import TextNoteDetailUpdate from '../forms/TextNoteDetailUpdate.js'
 class TextNoteDetail extends React.Component{
 
   state ={
-    textnote: {}
-
+    textnote: {},
+    userid:''
   }
 
+  fetchUserId = () => {
+    axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+      this.setState({
+        userid:result.data.user
+      })
+    })
+  }
+
+
   componentDidMount() {
+    this.fetchUserId();
       const textnoteID = this.props.match.params.textnoteID;
       axios.get(`http://127.0.0.1:8000/api/TextNotes/${textnoteID}/`)
         .then(res => {
@@ -35,17 +45,30 @@ class TextNoteDetail extends React.Component{
   render(){
     return(
       <div>
+
       <h1>textnoteDetailView.js</h1>
 
+
+      {this.state.textnote.author == this.state.userid?
       <TextNoteDetailUpdate
         requestType="put"
         textnoteID={this.props.match.params.textnoteID}
         textnoteContent={this.state.textnote.content}
         textnoteTitle = {this.state.textnote.title}/>
+      :
+      <h1> You are not logged in as the correct user</h1>
 
-      <form onSubmit={(event)=>this.handleDelete(event)}>
-        <Button type='danger' htmlType='submit'>Delete</Button>
-      </form>
+    }
+
+    {this.state.textnote.author == this.state.userid ?
+
+    <form onSubmit={(event)=>this.handleDelete(event)}>
+      <Button type='danger' htmlType='submit'>Delete</Button>
+    </form>
+    :
+    <h1> </h1>
+    }
+
 
       </div>
 

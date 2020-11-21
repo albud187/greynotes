@@ -5,11 +5,19 @@ import ListNoteDetailUpdateView from '../forms/ListNoteDetailUpdateView.js'
 
 class ListNoteDetailView extends React.Component {
   state ={
-    listnote: {}
+    listnote: {},
+    userid:''
+}
 
-  }
-
+fetchUserId = () => {
+  axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+    this.setState({
+      userid:result.data.user
+    })
+  })
+}
   componentDidMount() {
+    this.fetchUserId()
     const listnoteID = this.props.match.params.listnoteID;
     axios.get(`http://127.0.0.1:8000/api/ListNotes/${listnoteID}/`)
       .then(res => {
@@ -33,15 +41,23 @@ class ListNoteDetailView extends React.Component {
   render() {
     return (
       <div>ListNoteDetailView.js
-      <p>{this.props.match.params.listnoteID} - {this.state.listnote.title}</p>
-      <ListNoteDetailUpdateView
+      {this.state.listnote.author == this.state.userid ?
+        <ListNoteDetailUpdateView
         listnotetID={this.props.match.params.listnoteID}
         listnotetitle = {this.state.listnote.title}
         />
+        :
+        <h1>You are not logged in as the correct user</h1>
+      }
 
+      {this.state.listnote.author == this.state.userid ?
         <form onSubmit={(event)=>this.handleDelete(event)}>
           <Button type='danger' htmlType='submit'>Delete</Button>
         </form>
+        :
+        <h1> </h1>
+      }
+
       </div>
 
 
