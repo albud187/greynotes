@@ -26,7 +26,7 @@ const ListNotes =(props)=>{
           </a>}/>
 
         <p><strong>date created</strong> : {item.date_created}</p>
-        <p><strong>group</strong>: {item.note_group_name}</p>
+        <p><strong>group</strong>: {item.note_group}</p>
         <ArchiveListNoteCheckbox
         data={item}/>
         Archive
