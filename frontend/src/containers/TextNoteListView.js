@@ -14,23 +14,24 @@ class TextNoteListView extends React.Component{
 
   state ={
     active_text_notes: [],
+    all_text_notes:[],
     text_archive_display:false,
-    all_text_notes:[]
-  }
 
-  fetchActiveTextNotes = () => {
-    axios.get(`http://127.0.0.1:8000/api/text_notes_by_user?token=${localStorage['token']}`).then(res => {
-      this.setState({
-        active_text_notes: res.data.filter(checkArchived)
-      });
-      console.log(res.data)
-    });
   }
 
   fetchAllTextNotes = () => {
     axios.get(`http://127.0.0.1:8000/api/text_notes_by_user?token=${localStorage['token']}`).then(res => {
       this.setState({
         all_text_notes: res.data
+      });
+      console.log(res.data)
+    });
+  }
+
+  fetchActiveTextNotes = () => {
+    axios.get(`http://127.0.0.1:8000/api/text_notes_by_user?token=${localStorage['token']}`).then(res => {
+      this.setState({
+        active_text_notes: res.data.filter(checkArchived)
       });
       console.log(res.data)
     });

@@ -3,8 +3,8 @@ import { Form, Input, Button } from 'antd';
 import axios from 'axios';
 import { List,Card } from 'antd';
 import { Checkbox } from 'antd';
-import ListNoteTaskCheckbox from './ListNoteTaskCheckbox.js'
 import { Row, Col } from 'antd';
+import ListNoteTaskCheckbox from './ListNoteTaskCheckbox.js'
 
 const textstyle = {
   position: "relative",
@@ -34,7 +34,8 @@ class ListNoteDetailUpdateView extends React.Component {
     note_groups: [],
     list_note: {},
     list_note_entrys: [],
-    list_note_actual:{}
+    list_note_actual:{},
+    userid:''
   }
 
   fetchNoteGroups = () => {
@@ -45,6 +46,15 @@ class ListNoteDetailUpdateView extends React.Component {
       console.log(result.data)
     });
   }
+
+  fetchUserId = () => {
+    axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+      this.setState({
+        userid:result.data.user
+      })
+    })
+  }
+
 
   handleListItemEdit =(event,itemID,parentlist)=>{
     event.preventDefault()
@@ -110,15 +120,14 @@ class ListNoteDetailUpdateView extends React.Component {
 
   }
 
-
-
   handleTitleAndGroup = (event) =>{
     event.preventDefault()
     const title = event.target.elements.title.value;
     const notegroup = event.target.elements.notegroup.value
     axios.put(`http://127.0.0.1:8000/api/ListNotes/${this.props.listnotetID}/`, {
     title: title,
-    note_group: notegroup
+    note_group: notegroup,
+    author:this.state.userid
   })
   .then(res=>console.log(res))
   .catch(err=>console.log(err));
@@ -126,6 +135,7 @@ class ListNoteDetailUpdateView extends React.Component {
   }
 
   componentDidMount(){
+    this.fetchUserId()
     this.fetchNoteGroups();
     const listnotetID = this.props.listnotetID
     axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +listnotetID)
