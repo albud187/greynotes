@@ -2,9 +2,11 @@ from articles.models import (
     NoteGroup,
     TextNote,
     ListNote,
-    ListNoteEntry)
+    ListNoteEntry,
+    User)
 
 from .serializers import (
+    UserSerializer,
     NoteGroupSerializer,
     TextNoteSerializer,
     MemeTextSerializer,
@@ -32,6 +34,10 @@ from rest_framework.generics import (
     DestroyAPIView,
     UpdateAPIView
 )
+
+class UserViewSet(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
 
 class NoteGroupViewSet(viewsets.ModelViewSet):
     serializer_class = NoteGroupSerializer

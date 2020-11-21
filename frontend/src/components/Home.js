@@ -6,9 +6,11 @@ class Home extends Component {
       <div>
 
       {localStorage['token'] ?
-        <h1> welcome user # {localStorage['token']} </h1>
-
-
+      <div>
+      <h1> welcome {localStorage['username']} </h1>
+      <p>greynotes is a note taking web app </p>
+      <p> you can create notes in the form of text and checklists </p>
+      </div>
       :
       <div>
       <h1>Log in or sign up</h1>

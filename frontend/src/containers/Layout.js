@@ -8,6 +8,7 @@ import axios from 'axios'
 const { Header, Content, Footer } = Layout;
 
 const CustomLayout = (props)=>{
+
   return(
     <Layout>
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
@@ -23,14 +24,10 @@ const CustomLayout = (props)=>{
 
 
           {localStorage['token'] ?
-          <Menu.Item>Logged in as: </Menu.Item>
-
+          <Menu.Item><strong>Welcome {localStorage['username']}</strong></Menu.Item>
           :
           <Menu.Item><Link to='/signup/'>Sign up</Link></Menu.Item>
-
           }
-
-
 
         </Menu>
       </Header>
