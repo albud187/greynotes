@@ -5,8 +5,8 @@ class Home extends Component {
     return (
       <div>
 
-      {localStorage['userid'] ?
-        <h1> welcome user # {localStorage['userid']} </h1>
+      {localStorage['token'] ?
+        <h1> welcome user # {localStorage['token']} </h1>
 
 
       :
@@ -14,7 +14,6 @@ class Home extends Component {
       <h1>Log in or sign up</h1>
       <p>greynotes is a note taking web app </p>
       <p> you can create notes in the form of text and checklists </p>
-      <p>coming soon: kanban task manager</p>
       </div>
       }
 

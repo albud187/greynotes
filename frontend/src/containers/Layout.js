@@ -13,17 +13,23 @@ const CustomLayout = (props)=>{
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <div className="logo" />
         <Menu theme="dark" mode="horizontal">
+        <Menu.Item><Link to='/'>Home</Link></Menu.Item>
 
           {localStorage['token'] ?
-            <Menu.Item onClick = {props.logout} >Logout</Menu.Item>
+          <Menu.Item onClick = {props.logout} >Logout</Menu.Item>
           :
           <Menu.Item ><Link to='/login/'>Login</Link></Menu.Item>
           }
 
 
+          {localStorage['token'] ?
+          <Menu.Item>Logged in as: </Menu.Item>
+
+          :
           <Menu.Item><Link to='/signup/'>Sign up</Link></Menu.Item>
 
-          <Menu.Item><Link to='/'>Home</Link></Menu.Item>
+          }
+
 
 
         </Menu>

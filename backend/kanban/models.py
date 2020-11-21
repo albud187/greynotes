@@ -44,6 +44,7 @@ class Project(models.Model):
         return self.title
 
 class TaskStatus(models.Model):
+    Parent_Project = models.ForeignKey(Project, null=True, blank=True, on_delete=models.SET_NULL)
     status = models.CharField(max_length=100)
 
 class Task(models.Model):

@@ -1,5 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
+
 import axios from 'axios'
 
 const initialState = {
@@ -16,6 +17,7 @@ const authStart = (state, action) => {
 }
 
 const authSuccess = (state, action) => {
+  window.location.replace('/')
     return updateObject(state, {
         token: action.token,
         error: null,
@@ -31,9 +33,12 @@ const authFail = (state, action) => {
 }
 
 const authLogout = (state, action) => {
+    window.location.reload(true)
+    window.location.replace('/')
     return updateObject(state, {
         token: null
     });
+
 }
 
 const reducer = (state=initialState, action) => {
