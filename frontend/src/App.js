@@ -4,9 +4,10 @@ import {connect} from 'react-redux'
 import BaseRouter from './routes';
 import 'antd/dist/antd.css'
 import CustomLayout from './containers/Layout.js'
+import axios from 'axios'
 
 import * as actions from './store/actions/auth.js'
-
+axios.defaults.xsrfHeaderName = "X-CSRFToken"
 class App extends Component {
   render(){
   return (

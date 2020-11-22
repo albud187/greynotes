@@ -11,10 +11,13 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+FRONTEND_DIR = os.path.join(BASE_DIR.parent, 'frontend')
+BUILD_DIR = os.path.join(FRONTEND_DIR, 'build')
+print(BUILD_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -24,8 +27,6 @@ SECRET_KEY = 'i6m_c7k13t=b2f%jy3(ytw2q9updlzwn_1s7_($t5_6pw56+e2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -37,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'rest_framework',
     'corsheaders',
     'articles',
@@ -67,7 +68,7 @@ ROOT_URLCONF = 'djreact.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BUILD_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,13 +138,17 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
+
     ]
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:8000',
-    'http://localhost:3000',
 
-]
+STATICFILES_DIRS = [os.path.join(BUILD_DIR,'static')]
+
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+CSRF_COOKIE_NAME = "XSRF-TOKEN"
