@@ -169,6 +169,12 @@ class ListNoteDetailUpdateView extends React.Component {
       </select>
       <button type="submit">Update</button>
       </form>
+
+      <form onSubmit={(event,parentlist)=>this.handleAddEntry(event,this.state.list_note)}>
+      <textarea rows="1" cols="50" name="newlistentry" placeholder='new list item'/>
+      <button type="submit">*ADD*</button>
+      </form>
+      
       <Row>
         <Col span={120}>
 
@@ -219,10 +225,7 @@ class ListNoteDetailUpdateView extends React.Component {
           </Row>
           <br></br>
 
-          <form onSubmit={(event,parentlist)=>this.handleAddEntry(event,this.state.list_note)}>
-          <textarea rows="1" cols="50" name="newlistentry" placeholder='new list item'/>
-          <button type="submit">*ADD*</button>
-          </form>
+
 
       </div>
     )

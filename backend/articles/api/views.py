@@ -55,7 +55,6 @@ class ListNoteEntryViewSet(viewsets.ModelViewSet):
     serializer_class = ListNoteEntrySerializer
     queryset = ListNoteEntry.objects.all()
 
-
 def mememify_text(input_text):
     meme_text_dict = {'E':'3', 'A':'4', 'I':'1','V':'\/','W':'\/\/','T':'7', 'S':'5'}
     meme_text_dict_list = list(meme_text_dict.keys())
@@ -156,11 +155,8 @@ class SortTextNoteByUserView(ListAPIView):
         token = self.request.GET['token']
         userid= Token.objects.filter(key=token)[0].user.id
         if userid:
-            target_queryset = filterTextNoteUser(userid)
+            target_queryset = reversed(filterTextNoteUser(userid))
         return(target_queryset)
-
-
-
 
 def filterListNoteUser(userid):
     target_query = ListNote.objects.filter(author=userid)
@@ -174,7 +170,7 @@ class SortListNoteByUserView(ListAPIView):
         token = self.request.GET['token']
         userid= Token.objects.filter(key=token)[0].user.id
         if userid:
-            target_queryset = filterListNoteUser(userid)
+            target_queryset = reversed(filterListNoteUser(userid))
         return(target_queryset)
 
 def filterNoteGroupUser(userid):
