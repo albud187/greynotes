@@ -122,11 +122,11 @@ class RequestResetEmailView(View):
         user=User.objects.filter(email=email)
 
         if user.exists():
-            current_site = get_current_site(request)
+            # current_site = get_current_site(request)
             email_subject = '[Interactive Printers Account Password Reset]'
             message=render_to_string('auth/reset-user-password.html',
             {
-            'domain':current_site.domain,
+            # 'domain':current_site.domain,
             'uid':urlsafe_base64_encode(force_bytes(user[0].pk)),
             'token': PasswordResetTokenGenerator().make_token(user[0])
             })
@@ -199,7 +199,7 @@ class SetNewPasswordView(View):
             messages.success(
                 request, 'Password reset success, you can login with new password')
 
-            return redirect('login')
+            return render(request,'auth/success-password-reset.html')
 
         except DjangoUnicodeDecodeError as identifier:
             messages.error(request, 'Something went wrong')

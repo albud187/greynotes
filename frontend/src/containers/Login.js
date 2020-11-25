@@ -43,6 +43,8 @@ class Login extends React.Component {
             </button>
 
           </form>
+          <br></br>
+          <p>Forgot password? <a href='/request-reset-email/'>reset it here</a></p>
       </div>
     )
   }

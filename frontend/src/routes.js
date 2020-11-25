@@ -33,7 +33,6 @@ const BaseRouter =() => (
     <Route exact path ='/create_list' component ={ListNoteCreate}/>
 
     <Route exact path='/login/' component = {Login}/>
-    <Route exact path='/signup/' component = {Signup}/>
   </div>
 )
 
