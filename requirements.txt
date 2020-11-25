@@ -4,3 +4,10 @@ django-cors-headers
 six
 django-rest-auth
 django-allauth
+
+react
+react-router-dom
+react-redux
+react-thunk
+axios
+antd
