@@ -92,41 +92,7 @@ class RegistrationView(View):
 
         messages.add_message(request, messages.SUCCESS, 'account created succesfully')
 
-        return redirect('/')
-
-# class LoginView(View):
-#     def get(self, request):
-#         return render(request, 'auth/login.html')
-#
-#     def post(self, request):
-#         context={
-#         'data':request.POST,
-#         'has_error':False
-#         }
-#         username = request.POST.get('username')
-#         password=request.POST.get('password')
-#         if username=='':
-#             messages.add_message(request, messages.ERROR, 'Username is required')
-#             context['has_error']=True
-#
-#         if password=='':
-#             messages.add_message(request, messages.ERROR, 'password is required')
-#             context['has_error']=True
-#
-#         user=authenticate(request, username=username, password=password)
-#
-#
-#         if not user and not context['has error']:
-#             messages.add_message(request,messages.ERROR,'Invalid Login')
-#
-#         if context['has error']:
-#             return render(reuqest,'auth/login.html', status=401, context=context)
-#
-#         login(request,user)
-#         return redirect('home')
-#
-#
-#         return render(request,'auth/login.html')
+        return render(request,'auth/success-register.html')
 
 class ActivateAccountView(View):
     def get(self, request, uidb64, token):
@@ -140,20 +106,8 @@ class ActivateAccountView(View):
             user.save()
             messages.add_message(request, messages.SUCCESS,
                                  'account activated successfully')
-            return redirect('login')
+            return render(request, 'auth/success-activated.html')
         return render(request, 'auth/activate_failed.html', status=401)
-
-class HomeView(View):
-    def get(self, request):
-        return render(request, 'home.html')
-
-
-class LogoutView(View):
-    def post(self, request):
-        logout(request)
-        messages.add_message(request, messages.SUCCESS, 'Logout successfully')
-        return redirect('login')
-        # return render(request,'auth/login.html')
 
 class RequestResetEmailView(View):
     def get(self, request):
