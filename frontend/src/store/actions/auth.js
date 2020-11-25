@@ -83,6 +83,7 @@ export const authSignup = (username, email, password1, password2) => {
             password2: password2,
         })
 
+
         .catch(err => {
             dispatch(authFail(err))
         })

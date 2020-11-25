@@ -19,6 +19,20 @@ FRONTEND_DIR = os.path.join(BASE_DIR.parent, 'frontend')
 BUILD_DIR = os.path.join(FRONTEND_DIR, 'build')
 print(BUILD_DIR)
 
+admin_codes_dir = os.path.join(BASE_DIR,'admin_codes.txt')
+
+codes = open(admin_codes_dir,'r')
+codes_content = codes.read()
+codes_content_list = codes_content.split('\n')
+codes_content_dict = {}
+for item in codes_content_list:
+    try:
+        KEY = item.split(':')[0]
+        VALUE = item.split(':')[1]
+        codes_content_dict[KEY]=VALUE
+    except:
+        pass
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -27,7 +41,6 @@ SECRET_KEY = 'i6m_c7k13t=b2f%jy3(ytw2q9updlzwn_1s7_($t5_6pw56+e2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 
 # Application definition
 
@@ -38,10 +51,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'bootstrap4',
 
     'rest_framework',
     'corsheaders',
     'articles',
+    'user_api',
+
+
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -50,6 +68,7 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
     'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -152,3 +171,9 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
+
+EMAIL_HOST=codes_content_dict['EMAIL_HOST']
+EMAIL_HOST_USER=codes_content_dict['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD=codes_content_dict['EMAIL_HOST_PASSWORD']
+EMAIL_USE_TLS=True
+EMAIL_PORT=587
