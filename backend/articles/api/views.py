@@ -35,9 +35,6 @@ from rest_framework.generics import (
     UpdateAPIView
 )
 
-from django.contrib.auth.decorators import user_passes_test
-
-
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
