@@ -6,7 +6,6 @@ from articles.models import (
     User)
 
 from .serializers import (
-    UserSerializer,
     NoteGroupSerializer,
     TextNoteSerializer,
     MemeTextSerializer,
@@ -18,14 +17,8 @@ from .serializers import (
 import json
 from rest_framework import viewsets
 import random
-from django.shortcuts import render
-from django.http import JsonResponse
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from rest_framework import serializers, views
 from rest_framework.authtoken.models import Token
-
-from django.core.serializers import serialize as SERIALIZE
 
 from rest_framework.generics import (
     ListAPIView,
@@ -34,29 +27,6 @@ from rest_framework.generics import (
     DestroyAPIView,
     UpdateAPIView
 )
-
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from rest_framework import permissions
-
-class IsSuperUser(permissions.BasePermission):
-
-    def has_permission(self, request, view):
-        return request.user and request.user.is_superuser
-
-class IsOwner(permissions.BasePermission):
-
-    def has_object_permission(self, request, view, obj):
-        if request.user:
-            if request.user.is_superuser:
-                return True
-            else:
-                return obj.author == request.user
-        else:
-            return False
-
-class UserViewSet(viewsets.ModelViewSet):
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
 
 class NoteGroupViewSet(viewsets.ModelViewSet):
     serializer_class = NoteGroupSerializer
