@@ -35,25 +35,62 @@ from rest_framework.generics import (
     UpdateAPIView
 )
 
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from rest_framework import permissions
+
+class IsSuperUser(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        return request.user and request.user.is_superuser
+
+class IsOwner(permissions.BasePermission):
+
+    def has_object_permission(self, request, view, obj):
+        if request.user:
+            if request.user.is_superuser:
+                return True
+            else:
+                return obj.author == request.user
+        else:
+            return False
+
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
 class NoteGroupViewSet(viewsets.ModelViewSet):
     serializer_class = NoteGroupSerializer
-    queryset = NoteGroup.objects.all()
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return NoteGroup.objects.all()
+        else:
+            return NoteGroup.objects.filter(author=self.request.user)
 
 class TextNoteViewSet(viewsets.ModelViewSet):
     serializer_class = TextNoteSerializer
-    queryset = TextNote.objects.all()
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return TextNote.objects.all()
+        else:
+            return TextNote.objects.filter(author=self.request.user)
+
 
 class ListNoteViewSet(viewsets.ModelViewSet):
     serializer_class= ListNoteSerializer
     queryset = ListNote.objects.all()
 
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return ListNote.objects.all()
+        else:
+            return ListNote.objects.filter(author=self.request.user)
+
 class ListNoteEntryViewSet(viewsets.ModelViewSet):
     serializer_class = ListNoteEntrySerializer
     queryset = ListNoteEntry.objects.all()
+
 
 def mememify_text(input_text):
     meme_text_dict = {'E':'3', 'A':'4', 'I':'1','V':'\/','W':'\/\/','T':'7', 'S':'5'}

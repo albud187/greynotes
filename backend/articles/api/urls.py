@@ -16,6 +16,7 @@ from articles.api.views import (
 from rest_framework.routers import DefaultRouter
 from django.urls import path
 from djreact.user_auth_api.views import TokenViewSet
+from rest_framework.authtoken.models import Token
 
 router = DefaultRouter()
 router.register('NoteGroups', NoteGroupViewSet, basename='NoteGroups')
@@ -23,6 +24,8 @@ router.register('TextNotes', TextNoteViewSet, basename='TextNotes')
 router.register('ListNotes', ListNoteViewSet, basename='ListNotes')
 router.register('ListNoteEntrysAll', ListNoteEntryViewSet, basename='ListNoteEntrys')
 router.register('ListNoteEntrysList', ListNoteEntrysListViewSet, basename='ListNoteEntrysList')
+
+# router.register('text_notes_by_user', SortTextNoteByUserView, basename='text_notes_by_user')
 
 router.register('Tokens', TokenViewSet, basename='Tokens')
 router.register('Users', UserViewSet, basename='Users')
@@ -37,4 +40,6 @@ function_views=[
     # path('list_note_entrys_list', ListNoteEntrysView.as_view(), name='list_note_entrys')
 ]
 
-urlpatterns = router.urls + function_views
+text_note_views =[]
+
+urlpatterns = router.urls + function_views + text_note_views
