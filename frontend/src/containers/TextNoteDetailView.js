@@ -15,6 +15,7 @@ class TextNoteDetail extends React.Component{
       this.setState({
         userid:result.data.user
       })
+      console.log(this.state.userid)
     })
   }
 

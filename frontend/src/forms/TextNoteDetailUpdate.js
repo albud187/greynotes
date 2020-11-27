@@ -2,15 +2,15 @@ import React from 'react';
 import { Input } from 'antd';
 import axios from 'axios';
 
+
 class TextNoteDetailUpdate extends React.Component {
   state ={
     note_groups: [],
-    textnote: {},
-    userid:''
+    textnote: {}
   }
 
   fetchNoteGroups = () => {
-    axios.get("http://127.0.0.1:8000/api/notegroups_by_user/?token="+localStorage['token'])
+    axios.get("http://127.0.0.1:8000/api/notegroups_by_user?token="+localStorage['token'])
     .then(result => {this.setState({
         note_groups: result.data
       });
@@ -18,13 +18,6 @@ class TextNoteDetailUpdate extends React.Component {
     });
   }
 
-  fetchUserId = () => {
-    axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
-      this.setState({
-        userid:result.data.user
-      })
-    })
-  }
 
   handleFormSubmit = (event, textnoteID)=>{
     event.preventDefault()
@@ -36,17 +29,14 @@ class TextNoteDetailUpdate extends React.Component {
     axios.put(`http://127.0.0.1:8000/api/TextNotes/${textnoteID}/`, {
         title: title,
         content: content,
-        note_group: notegroup,
-        author:this.state.userid,
-        archived:false
+        note_group: notegroup
       })
       .then(res=>console.log(res))
       .catch(err=>console.log(err));
-      alert('note updated' + ' by user number' +this.state.userid)
+      alert('note updated')
     }
 
     componentDidMount() {
-      this.fetchUserId()
       this.fetchNoteGroups();
         const textnoteID = this.props.textnoteID;
         axios.get(`http://127.0.0.1:8000/api/TextNotes/${textnoteID}/`).then(res => {

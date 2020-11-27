@@ -19,6 +19,7 @@ from rest_framework import viewsets
 import random
 from rest_framework import serializers, views
 from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
 
 from rest_framework.generics import (
     ListAPIView,
@@ -39,12 +40,12 @@ class NoteGroupViewSet(viewsets.ModelViewSet):
 
 class TextNoteViewSet(viewsets.ModelViewSet):
     serializer_class = TextNoteSerializer
-
-    def get_queryset(self):
-        if self.request.user.is_superuser:
-            return TextNote.objects.all()
-        else:
-            return TextNote.objects.filter(author=self.request.user)
+    queryset = TextNote.objects.all()
+    # def get_queryset(self):
+    #     if self.request.user.is_superuser:
+    #         return TextNote.objects.all()
+    #     else:
+    #         return TextNote.objects.filter(author=self.request.user)
 
 
 class ListNoteViewSet(viewsets.ModelViewSet):

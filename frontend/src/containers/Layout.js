@@ -26,7 +26,7 @@ const CustomLayout = (props)=>{
           {localStorage['token'] ?
           <Menu.Item><strong>Welcome {localStorage['username']}</strong></Menu.Item>
           :
-          <Menu.Item><Link to='/register/'>Register</Link></Menu.Item>
+          <Menu.Item><a href='/registration/'>Register</a></Menu.Item>
           }
 
         </Menu>
