@@ -51,14 +51,14 @@ class TextNoteCreate extends React.Component {
 render(){
   return (
       <div>
-      <h1>textnotecreate.js</h1>
+      <h1>New Text Note</h1>
         <form onSubmit={(event)=>this.handleFormSubmit(event)}>
-          <p>Title</p>
+          <p><strong>Title</strong></p>
               <textarea rows="1" cols="50" name="title" placeholder="title"/>
-          <p>Content</p>
+          <p><strong>Content</strong></p>
               <textarea rows="9" cols="50" name="content" placeholder="content" />
               <br></br>
-          <label for="notegroup">NoteGroup: </label>
+          <label for="notegroup"><strong>Note Group: </strong></label>
             <select name="notegroup" id="notegroup">
             <option value="">_ungrouped_</option>
             {this.state.note_groups.map((val)=>(

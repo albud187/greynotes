@@ -17,7 +17,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 FRONTEND_DIR = os.path.join(BASE_DIR.parent, 'frontend')
 BUILD_DIR = os.path.join(FRONTEND_DIR, 'build')
-print(BUILD_DIR)
+
+BACKEND_FOLDER = os.path.join(BASE_DIR.parent, 'backend')
+BACKEND_TEMPLATES_DIR = os.path.join(BACKEND_FOLDER, 'backend_templates')
+print(BACKEND_TEMPLATES_DIR)
 
 admin_codes_dir = os.path.join(BASE_DIR,'admin_codes.txt')
 
@@ -87,7 +90,7 @@ ROOT_URLCONF = 'djreact.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BUILD_DIR],
+        'DIRS': [BUILD_DIR, BACKEND_TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

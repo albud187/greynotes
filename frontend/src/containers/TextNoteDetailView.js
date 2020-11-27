@@ -47,9 +47,6 @@ class TextNoteDetail extends React.Component{
     return(
       <div>
 
-      <h1>textnoteDetailView.js</h1>
-
-
       {this.state.textnote.author == this.state.userid?
       <TextNoteDetailUpdate
         requestType="put"

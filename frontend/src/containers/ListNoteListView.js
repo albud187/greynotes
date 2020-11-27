@@ -51,7 +51,7 @@ class ListNoteListView extends React.Component{
   render(){
     return(
       <div>
-      <h1> ListNoteListView.js</h1>
+      <h1>My List Notes</h1>
       <Checkbox
       checked={this.state.list_archive_display}
       onChange = {(event)=>this.changeListArchiveDisplay(event)}

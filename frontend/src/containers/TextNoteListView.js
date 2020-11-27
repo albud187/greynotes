@@ -53,7 +53,7 @@ class TextNoteListView extends React.Component{
   render(){
     return(
       <div>
-      <h1> TextNoteListView.js</h1>
+      <h1>My Text Notes</h1>
         <h1>
 
           <Checkbox
@@ -65,10 +65,7 @@ class TextNoteListView extends React.Component{
           </Checkbox>
         </h1>
 
-
-      <p> add visual fx on new note button </p>
-
-      <h2><Link to="/create_note">New Note</Link></h2>
+      <h2><Link to="/create_note">New Text Note</Link></h2>
 
       {this.state.text_archive_display ?
         <TextNotes data ={this.state.all_text_notes}/>

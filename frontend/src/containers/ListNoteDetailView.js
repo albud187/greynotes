@@ -40,7 +40,7 @@ fetchUserId = () => {
 
   render() {
     return (
-      <div>ListNoteDetailView.js
+      <div>
       {this.state.listnote.author == this.state.userid ?
         <ListNoteDetailUpdateView
         listnotetID={this.props.match.params.listnoteID}

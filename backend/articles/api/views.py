@@ -52,11 +52,11 @@ class ListNoteViewSet(viewsets.ModelViewSet):
     serializer_class= ListNoteSerializer
     queryset = ListNote.objects.all()
 
-    def get_queryset(self):
-        if self.request.user.is_superuser:
-            return ListNote.objects.all()
-        else:
-            return ListNote.objects.filter(author=self.request.user)
+    # def get_queryset(self):
+    #     if self.request.user.is_superuser:
+    #         return ListNote.objects.all()
+    #     else:
+    #         return ListNote.objects.filter(author=self.request.user)
 
 class ListNoteEntryViewSet(viewsets.ModelViewSet):
     serializer_class = ListNoteEntrySerializer

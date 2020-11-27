@@ -45,20 +45,18 @@ class ListNoteCreate extends React.Component {
     console.log(title)
     console.log(notegroup)
 
-
-
 }
 
   render() {
     return (
       <div>
-      <h1>ListNoteCreate.js</h1>
+      <h1>New List Note</h1>
 
       <form onSubmit={(event)=>this.handleFormSubmit(event)}>
-      <p>Title</p>
+      <p><strong>Title</strong></p>
     <textarea rows="1" cols="50" name="title" placeholder="title"/>
 
-    <label for="notegroup">NoteGroup: </label>
+    <label for="notegroup"><strong>Note Group: </strong></label>
       <select name="notegroup" id="notegroup">
       <option value="">_ungrouped_</option>
       {this.state.note_groups.map((val)=>(

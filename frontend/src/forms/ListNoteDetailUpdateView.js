@@ -156,8 +156,9 @@ class ListNoteDetailUpdateView extends React.Component {
       <div>
 
       <form onSubmit={(event)=>this.handleTitleAndGroup(event)}>
-      <p>Title { this.state.list_note.note_group}</p>
+      <p><strong>Title</strong></p>
         <textarea rows="1" cols="50" name="title" defaultValue = {this.props.listnotetitle}/>
+
       <select name="notegroup" id="notegroup">
             <option value="">_ungrouped_</option>
             {this.state.note_groups.map((val)=>(
@@ -169,12 +170,14 @@ class ListNoteDetailUpdateView extends React.Component {
       </select>
       <button type="submit">Update</button>
       </form>
+        <p><strong>New List Note Item</strong></p>
 
       <form onSubmit={(event,parentlist)=>this.handleAddEntry(event,this.state.list_note)}>
       <textarea rows="1" cols="50" name="newlistentry" placeholder='new list item'/>
       <button type="submit">*ADD*</button>
       </form>
-      
+        <p><strong>List Note Items</strong></p>
+
       <Row>
         <Col span={120}>
 

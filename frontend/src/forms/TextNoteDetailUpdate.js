@@ -6,7 +6,8 @@ import axios from 'axios';
 class TextNoteDetailUpdate extends React.Component {
   state ={
     note_groups: [],
-    textnote: {}
+    textnote: {},
+    userid:''
   }
 
   fetchNoteGroups = () => {
@@ -18,6 +19,13 @@ class TextNoteDetailUpdate extends React.Component {
     });
   }
 
+  fetchUserId = () => {
+    axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+      this.setState({
+        userid:result.data.user
+      })
+    })
+  }
 
   handleFormSubmit = (event, textnoteID)=>{
     event.preventDefault()
@@ -27,6 +35,7 @@ class TextNoteDetailUpdate extends React.Component {
 
     console.log(title,content);
     axios.put(`http://127.0.0.1:8000/api/TextNotes/${textnoteID}/`, {
+        author: this.state.userid,
         title: title,
         content: content,
         note_group: notegroup
@@ -37,6 +46,7 @@ class TextNoteDetailUpdate extends React.Component {
     }
 
     componentDidMount() {
+      this.fetchUserId()
       this.fetchNoteGroups();
         const textnoteID = this.props.textnoteID;
         axios.get(`http://127.0.0.1:8000/api/TextNotes/${textnoteID}/`).then(res => {
@@ -50,14 +60,13 @@ class TextNoteDetailUpdate extends React.Component {
 render(){
   return (
       <div>
-      <h1>textnoteDetailUpdate.js</h1>
         <form onSubmit={(event, textnoteID)=>this.handleFormSubmit(event, this.props.textnoteID)}>
-          <p>Title</p>
-              <textarea rows="1" cols="50" name="title" defaultValue = {this.props.textnoteTitle}/>
-          <p>Content</p>
-              <textarea rows="9" cols="50" name="content" defaultValue={this.state.textnote.content} />
+          <p><strong>Title</strong></p>
+              <textarea rows="1" cols="80" name="title" defaultValue = {this.props.textnoteTitle}/>
+          <p><strong>Content</strong></p>
+              <textarea rows="9" cols="80" name="content" defaultValue={this.state.textnote.content} />
                 <br/>
-          <label for="notegroup">NoteGroup: </label>
+          <label for="notegroup"><strong>NoteGroup: </strong></label>
 
 
               <select name="notegroup" id="notegroup">
