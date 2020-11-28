@@ -6,6 +6,9 @@ import { Checkbox } from 'antd';
 import { Row, Col } from 'antd';
 import ListNoteTaskCheckbox from './ListNoteTaskCheckbox.js'
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
+
 const textstyle = {
   position: "relative",
 

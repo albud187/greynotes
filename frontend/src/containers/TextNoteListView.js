@@ -6,6 +6,9 @@ import { Checkbox } from 'antd';
 import TextNotes from '../components/TextNotes.js'
 import {Link} from 'react-router-dom'
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
+
 function checkArchived(entry){
   return(!entry['archived'])
 }
@@ -20,7 +23,7 @@ class TextNoteListView extends React.Component{
   }
 
   fetchAllTextNotes = () => {
-    axios.get(`http://127.0.0.1:8000/api/text_notes_by_user/?token=${localStorage['token']}`).then(res => {
+    axios.get(`${API_PATH}api/text_notes_by_user/?token=${localStorage['token']}`).then(res => {
       this.setState({
         all_text_notes: res.data
       });
@@ -29,7 +32,7 @@ class TextNoteListView extends React.Component{
   }
 
   fetchActiveTextNotes = () => {
-    axios.get(`http://127.0.0.1:8000/api/text_notes_by_user/?token=${localStorage['token']}`).then(res => {
+    axios.get(`${API_PATH}api/text_notes_by_user/?token=${localStorage['token']}`).then(res => {
       this.setState({
         active_text_notes: res.data.filter(checkArchived)
       });

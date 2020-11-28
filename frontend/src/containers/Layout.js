@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 import axios from 'axios'
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
 const { Header, Content, Footer } = Layout;
 
 const CustomLayout = (props)=>{

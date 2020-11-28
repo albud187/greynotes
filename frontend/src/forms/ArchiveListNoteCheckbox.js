@@ -2,6 +2,9 @@ import React from 'react'
 import { Checkbox, Button } from 'antd';
 import axios from 'axios'
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
+
 function TrueorFalse(input) {
   if (input = false){
     return(0)

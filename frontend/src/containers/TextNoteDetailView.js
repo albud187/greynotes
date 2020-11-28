@@ -3,6 +3,9 @@ import axios from 'axios';
 import {Button, Card} from 'antd'
 import TextNoteDetailUpdate from '../forms/TextNoteDetailUpdate.js'
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
+
 class TextNoteDetail extends React.Component{
 
   state ={
@@ -11,7 +14,7 @@ class TextNoteDetail extends React.Component{
   }
 
   fetchUserId = () => {
-    axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+    axios.get(`${API_PATH}api/Tokens/${localStorage['token']}/`).then(result=>{
       this.setState({
         userid:result.data.user
       })
@@ -23,7 +26,7 @@ class TextNoteDetail extends React.Component{
   componentDidMount() {
     this.fetchUserId();
       const textnoteID = this.props.match.params.textnoteID;
-      axios.get(`http://127.0.0.1:8000/api/TextNotes/${textnoteID}/`)
+      axios.get(`${API_PATH}api/TextNotes/${textnoteID}/`)
         .then(res => {
         this.setState({
           textnote: res.data
@@ -37,7 +40,7 @@ class TextNoteDetail extends React.Component{
     handleDelete = (event) => {
       event.preventDefault()
       const textnoteID = this.props.match.params.textnoteID;
-      axios.delete(`http://127.0.0.1:8000/api/TextNotes/${textnoteID}/`)
+      axios.delete(`${API_PATH}api/TextNotes/${textnoteID}/`)
         this.forceUpdate();
         this.props.history.push('/text_note_list');
         this.forceUpdate();

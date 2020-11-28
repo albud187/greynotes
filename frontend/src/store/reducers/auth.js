@@ -1,7 +1,9 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
-
 import axios from 'axios'
+
+import * as API_PATHS from '../../api_path.js'
+const API_PATH = API_PATHS.API_PATH
 
 const initialState = {
     token: null,

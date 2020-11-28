@@ -3,8 +3,8 @@ import { Component } from 'react';
 import { Form, Input} from 'antd';
 import axios from 'axios';
 
-
-const output_data = 1
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
 
 class MemeTextGen extends Component {
   state ={

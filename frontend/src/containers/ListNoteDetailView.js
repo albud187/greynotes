@@ -3,6 +3,9 @@ import axios from 'axios';
 import {Button, Card} from 'antd'
 import ListNoteDetailUpdateView from '../forms/ListNoteDetailUpdateView.js'
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
+
 class ListNoteDetailView extends React.Component {
   state ={
     listnote: {},
@@ -19,7 +22,7 @@ fetchUserId = () => {
   componentDidMount() {
     this.fetchUserId()
     const listnoteID = this.props.match.params.listnoteID;
-    axios.get(`http://127.0.0.1:8000/api/ListNotes/${listnoteID}/`)
+    axios.get(`${API_PATH}api/ListNotes/${listnoteID}/`)
       .then(res => {
       this.setState({
         listnote: res.data
@@ -32,7 +35,7 @@ fetchUserId = () => {
       event.preventDefault()
       const listnoteID = this.props.match.params.listnoteID;
 
-      axios.delete(`http://127.0.0.1:8000/api/ListNotes/${listnoteID}/`)
+      axios.delete(`${API_PATH}api/ListNotes/${listnoteID}/`)
         this.forceUpdate();
         this.props.history.push('/list_note_list');
         this.forceUpdate();

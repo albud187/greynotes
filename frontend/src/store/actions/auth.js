@@ -1,6 +1,9 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
+import * as API_PATHS from '../../api_path.js'
+const API_PATH = API_PATHS.API_PATH
+
 export const authStart = () => {
     return {
         type: actionTypes.AUTH_START

@@ -4,6 +4,9 @@ import { Checkbox } from 'antd';
 import {Link} from 'react-router-dom'
 import ListNotes from '../components/ListNotes.js'
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
+
 function checkArchived(entry){
   return(!entry['archived'])
 }
@@ -18,7 +21,7 @@ class ListNoteListView extends React.Component{
   }
 
   fetchAllListNotes = () => {
-    axios.get(`http://127.0.0.1:8000/api/list_notes_by_user/?token=${localStorage['token']}`).then(res => {
+    axios.get(`${API_PATH}api/list_notes_by_user/?token=${localStorage['token']}`).then(res => {
       this.setState({
         all_list_notes: res.data
       });
@@ -27,7 +30,7 @@ class ListNoteListView extends React.Component{
   }
 
   fetchActiveListNotes = () => {
-    axios.get(`http://127.0.0.1:8000/api/list_notes_by_user/?token=${localStorage['token']}`).then(res => {
+    axios.get(`${API_PATH}api/list_notes_by_user/?token=${localStorage['token']}`).then(res => {
       this.setState({
         active_list_notes: res.data.filter(checkArchived)
       });

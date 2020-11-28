@@ -8,6 +8,9 @@ import NoteGroupCreate from '../forms/NoteGroupCreate.js'
 import NoteGroupDelete from '../forms/NoteGroupDelete.js'
 import NoteGroupEdit from '../forms/NoteGroupEdit.js'
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
+
 class FilterTextNotes extends Component {
 
   state ={

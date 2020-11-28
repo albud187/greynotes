@@ -1,7 +1,8 @@
 import React from 'react';
-
 import axios from 'axios';
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
 
 class TextNoteCreate extends React.Component {
   state ={

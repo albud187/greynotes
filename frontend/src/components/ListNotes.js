@@ -7,6 +7,8 @@ import { Card } from 'antd';
 
 import ArchiveListNoteCheckbox from '../forms/ArchiveListNoteCheckbox.js'
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
 
 const ListNotes =(props)=>{
 

@@ -8,6 +8,8 @@ import {Checkbox} from 'antd'
 import axios from 'axios'
 import ArchiveTextNoteCheckbox from '../forms/ArchiveTextNoteCheckbox.js'
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
 
 const TextNotes =(props)=>{
   var ItemInfo ='blank'

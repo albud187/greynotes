@@ -2,6 +2,8 @@ import React from 'react';
 import { Input } from 'antd';
 import axios from 'axios';
 
+import * as API_PATHS from '../api_path.js'
+const API_PATH = API_PATHS.API_PATH
 
 class TextNoteDetailUpdate extends React.Component {
   state ={
