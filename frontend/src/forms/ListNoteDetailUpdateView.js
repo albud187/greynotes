@@ -63,6 +63,7 @@ class ListNoteDetailUpdateView extends React.Component {
     axios.put(`http://127.0.0.1:8000/api/ListNoteEntrysAll/${itemID}/`,{
       entry_text:listentry,
       parent_list:parentlist,
+      author:this.state.userid
 
     })
     .then(res=>console.log(res))
@@ -76,6 +77,7 @@ class ListNoteDetailUpdateView extends React.Component {
     axios.post('http://127.0.0.1:8000/api/ListNoteEntrysAll/',{
       entry_text:newlistentry,
       parent_list:parentlist,
+      author:this.state.userid
     })
 
     axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +parentlist)

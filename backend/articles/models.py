@@ -73,6 +73,7 @@ class ListNote(models.Model):
         return(self.note_group.group_name)
 
 class ListNoteEntry(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     parent_list = models.ForeignKey(ListNote, on_delete=models.CASCADE)
     entry_text = models.TextField(null=True)
     completed = models.BooleanField(default=False)
