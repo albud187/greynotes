@@ -125,7 +125,7 @@ class RequestResetEmailView(View):
 
         if user.exists():
             # current_site = get_current_site(request)
-            email_subject = '[Grey Notes Printers Account Password Reset]'
+            email_subject = 'Grey Notes Account Password Reset'
             message=render_to_string('auth/reset-user-password.html',
             {
             'domain':site_domain,
