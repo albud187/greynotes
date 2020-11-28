@@ -18,6 +18,8 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
+site_domain = '127.0.0.1:8000'
+
 class RegistrationView(View):
     def get(self, request):
         return render(request, 'auth/register.html')
@@ -49,6 +51,7 @@ class RegistrationView(View):
                 messages.add_message(request, messages.ERROR, 'email is taken')
                 context['has_error']=True
 
+
         except Exception as identifier:
             pass
 
@@ -71,12 +74,11 @@ class RegistrationView(View):
 
         user.save()
 
-        # current_site = get_current_site(request)
-        email_subject = 'Interactive Printers Account Activation'
+        email_subject = 'Grey Notes Account Activation'
         message=render_to_string('auth/activate.html',
         {
         'user':user,
-        # 'domain':current_site.domain,
+        'domain':site_domain,
         'uid':urlsafe_base64_encode(force_bytes(user.pk)),
         'token': generate_token.make_token(user)
         })
@@ -123,10 +125,10 @@ class RequestResetEmailView(View):
 
         if user.exists():
             # current_site = get_current_site(request)
-            email_subject = '[Interactive Printers Account Password Reset]'
+            email_subject = '[Grey Notes Printers Account Password Reset]'
             message=render_to_string('auth/reset-user-password.html',
             {
-            # 'domain':current_site.domain,
+            'domain':site_domain,
             'uid':urlsafe_base64_encode(force_bytes(user[0].pk)),
             'token': PasswordResetTokenGenerator().make_token(user[0])
             })

@@ -81,6 +81,7 @@ def mememify_text(input_text):
                 char = char
         new_str = new_str+char
     return(new_str)
+    
 class MemeTextView(views.APIView):
 
     def get(self, request):
