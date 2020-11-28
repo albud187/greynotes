@@ -28,8 +28,8 @@ class RegistrationView(View):
         context = {
         'data':request.POST,
         'has_error':False
-
         }
+
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -62,8 +62,6 @@ class RegistrationView(View):
 
             except Exception as identifier:
                 pass
-
-
 
         if context['has_error']:
             return render(request,'auth/register.html',context)
