@@ -45,6 +45,8 @@ class TextNoteCreate extends React.Component {
     })
       .then(res=>console.log(res))
       .catch(err=>console.log(err));
+      this.props.history.push('text_note_list')
+
 
   }
 

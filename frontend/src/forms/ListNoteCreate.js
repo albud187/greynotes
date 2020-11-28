@@ -38,12 +38,13 @@ class ListNoteCreate extends React.Component {
     title: title,
     note_group: notegroup,
     author: this.state.userid
-
   })
     .then(res=>console.log(res))
     .catch(err=>console.log(err));
     console.log(title)
     console.log(notegroup)
+    this.props.history.push('list_note_list')
+
 
 }
 

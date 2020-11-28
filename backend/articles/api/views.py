@@ -31,16 +31,18 @@ from rest_framework.generics import (
 
 class NoteGroupViewSet(viewsets.ModelViewSet):
     serializer_class = NoteGroupSerializer
+    queryset = NoteGroup.objects.all()
 
-    def get_queryset(self):
-        if self.request.user.is_superuser:
-            return NoteGroup.objects.all()
-        else:
-            return NoteGroup.objects.filter(author=self.request.user)
+    # def get_queryset(self):
+    #     if self.request.user.is_superuser:
+    #         return NoteGroup.objects.all()
+    #     else:
+    #         return NoteGroup.objects.filter(author=self.request.user)
 
 class TextNoteViewSet(viewsets.ModelViewSet):
     serializer_class = TextNoteSerializer
     queryset = TextNote.objects.all()
+
     # def get_queryset(self):
     #     if self.request.user.is_superuser:
     #         return TextNote.objects.all()
@@ -61,6 +63,11 @@ class ListNoteViewSet(viewsets.ModelViewSet):
 class ListNoteEntryViewSet(viewsets.ModelViewSet):
     serializer_class = ListNoteEntrySerializer
     queryset = ListNoteEntry.objects.all()
+    # def get_queryset(self):
+    #     if self.request.user.is_superuser:
+    #         return ListNoteEntry.objects.all()
+    #     else:
+    #         return ListNoteEntry.objects.filter(author=self.request.user)
 
 
 def mememify_text(input_text):
@@ -81,7 +88,7 @@ def mememify_text(input_text):
                 char = char
         new_str = new_str+char
     return(new_str)
-    
+
 class MemeTextView(views.APIView):
 
     def get(self, request):
