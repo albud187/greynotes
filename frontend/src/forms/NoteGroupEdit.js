@@ -30,7 +30,6 @@ componentDidMount() {
   }
 
   handleGroupRename =(event)=>{
-    event.preventDefault()
     const notegroup = event.target.elements.notegroup.value;
     const newgroupname = event.target.elements.newgroupname.value;
     axios.put(`http://127.0.0.1:8000/api/NoteGroups/${notegroup}/`,{
