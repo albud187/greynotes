@@ -17,7 +17,7 @@ class MemeTextGen extends Component {
     event.preventDefault()
     const textToMeme = event.target.elements.textToMeme.value;
     console.log(textToMeme);
-    axios.get('http://127.0.0.1:8000/api/meme_text'+
+    axios.get(API_PATH+'api/meme_text'+
     '?textToMeme='+textToMeme, {
       textToMeme: textToMeme
     })

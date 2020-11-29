@@ -42,7 +42,7 @@ class ListNoteDetailUpdateView extends React.Component {
   }
 
   fetchNoteGroups = () => {
-    axios.get("http://127.0.0.1:8000/api/notegroups_by_user?token="+localStorage['token'])
+    axios.get(`${API_PATH}api/notegroups_by_user?token=${localStorage['token']}`)
     .then(result => {this.setState({
         note_groups: result.data
       });
@@ -51,7 +51,7 @@ class ListNoteDetailUpdateView extends React.Component {
   }
 
   fetchUserId = () => {
-    axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+    axios.get(`${API_PATH}api/Tokens/${localStorage['token']}/`).then(result=>{
       this.setState({
         userid:result.data.user
       })
@@ -63,7 +63,7 @@ class ListNoteDetailUpdateView extends React.Component {
     event.preventDefault()
     const listentry = event.target.elements.listentry.value;
     console.log(listentry, parentlist)
-    axios.put(`http://127.0.0.1:8000/api/ListNoteEntrysAll/${itemID}/`,{
+    axios.put(`${API_PATH}api/ListNoteEntrysAll/${itemID}/`,{
       entry_text:listentry,
       parent_list:parentlist,
       author:this.state.userid
@@ -77,20 +77,20 @@ class ListNoteDetailUpdateView extends React.Component {
   handleAddEntry = (event,parentlist) =>{
     event.preventDefault()
     const newlistentry = event.target.elements.newlistentry.value;
-    axios.post('http://127.0.0.1:8000/api/ListNoteEntrysAll/',{
+    axios.post(`${API_PATH}api/ListNoteEntrysAll/`,{
       entry_text:newlistentry,
       parent_list:parentlist,
       author:this.state.userid
     })
 
-    axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +parentlist)
+    axios.get(`${API_PATH}api/ListNoteEntrysList/?parentlist=${parentlist}`)
     .then(result =>{this.setState({
       list_note_entrys: result.data,
       list_note:this.props.listnotetID
     });
     })
 
-    axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +parentlist)
+    axios.get(`${API_PATH}api/ListNoteEntrysList/?parentlist=${parentlist}`)
     .then(result =>{this.setState({
       list_note_entrys: result.data,
       list_note:this.props.listnotetID
@@ -100,23 +100,23 @@ class ListNoteDetailUpdateView extends React.Component {
 
   handleEntryDelete = (event,listentryID,parentlist) =>{
     event.preventDefault()
-    axios.delete(`http://127.0.0.1:8000/api/ListNoteEntrysAll/${listentryID}/`)
+    axios.delete(`${API_PATH}api/ListNoteEntrysAll/${listentryID}/`)
 
-      axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +parentlist)
+      axios.get(`${API_PATH}api/ListNoteEntrysList/?parentlist=${parentlist}`)
       .then(result =>{this.setState({
         list_note_entrys: result.data,
         list_note:this.props.listnotetID
       });
       })
 
-      axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +parentlist)
+      axios.get(`${API_PATH}api/ListNoteEntrysList/?parentlist=${parentlist}`)
       .then(result =>{this.setState({
         list_note_entrys: result.data,
         list_note:this.props.listnotetID
       });
       })
 
-      axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +parentlist)
+      axios.get(`${API_PATH}api/ListNoteEntrysList/?parentlist=${parentlist}`)
       .then(result =>{this.setState({
         list_note_entrys: result.data,
         list_note:this.props.listnotetID
@@ -129,7 +129,7 @@ class ListNoteDetailUpdateView extends React.Component {
     event.preventDefault()
     const title = event.target.elements.title.value;
     const notegroup = event.target.elements.notegroup.value
-    axios.put(`http://127.0.0.1:8000/api/ListNotes/${this.props.listnotetID}/`, {
+    axios.put(`${API_PATH}api/ListNotes/${this.props.listnotetID}/`, {
     title: title,
     note_group: notegroup,
     author:this.state.userid
@@ -143,13 +143,13 @@ class ListNoteDetailUpdateView extends React.Component {
     this.fetchUserId()
     this.fetchNoteGroups();
     const listnotetID = this.props.listnotetID
-    axios.get('http://127.0.0.1:8000/api/ListNoteEntrysList/?parentlist=' +listnotetID)
+    axios.get(`${API_PATH}api/ListNoteEntrysList/?parentlist=${listnotetID}`)
     .then(result => {this.setState({
         list_note_entrys: result.data,
         list_note:this.props.listnotetID
         });
   })
-    axios.get(`http://127.0.0.1:8000/api/ListNotes/${this.props.listnotetID}/`)
+    axios.get(`${API_PATH}api/ListNotes/${this.props.listnotetID}/`)
       .then(result =>{this.setState({
         list_note_actual:result.data
       })})

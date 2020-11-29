@@ -12,7 +12,7 @@ class NoteGroupEdit extends Component {
   }
 
   fetchNoteGroups = () => {
-  axios.get("http://127.0.0.1:8000/api/notegroups_by_user?token="+localStorage['token']).then(result => {
+  axios.get(`${API_PATH}api/notegroups_by_user?token=${localStorage['token']}`).then(result => {
     this.setState({
       note_groups: result.data
     });
@@ -21,7 +21,7 @@ class NoteGroupEdit extends Component {
 }
 
 fetchUserId = () => {
-  axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+  axios.get(`${API_PATH}api/Tokens/${localStorage['token']}/`).then(result=>{
     this.setState({
       userid:result.data.user
     })
@@ -35,7 +35,7 @@ componentDidMount() {
   handleGroupRename =(event)=>{
     const notegroup = event.target.elements.notegroup.value;
     const newgroupname = event.target.elements.newgroupname.value;
-    axios.put(`http://127.0.0.1:8000/api/NoteGroups/${notegroup}/`,{
+    axios.put(`${API_PATH}api/NoteGroups/${notegroup}/`,{
       group_name:newgroupname,
       author: this.state.userid
 

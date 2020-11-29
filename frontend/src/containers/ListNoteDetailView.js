@@ -13,7 +13,7 @@ class ListNoteDetailView extends React.Component {
 }
 
 fetchUserId = () => {
-  axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+  axios.get(`${API_PATH}api/Tokens/${localStorage['token']}/`).then(result=>{
     this.setState({
       userid:result.data.user
     })

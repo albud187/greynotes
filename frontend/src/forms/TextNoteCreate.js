@@ -11,7 +11,7 @@ class TextNoteCreate extends React.Component {
   }
 
   fetchNoteGroups = () => {
-    axios.get("http://127.0.0.1:8000/api/notegroups_by_user?token="+localStorage['token']).then(result => {
+    axios.get(`${API_PATH}api/notegroups_by_user?token=${localStorage['token']}`).then(result => {
       this.setState({
         note_groups: result.data
       });
@@ -20,7 +20,7 @@ class TextNoteCreate extends React.Component {
   }
 
   fetchUserId = () => {
-    axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+    axios.get(`${API_PATH}api/Tokens/${localStorage['token']}/`).then(result=>{
       this.setState({
         userid:result.data.user
       })
@@ -38,7 +38,7 @@ class TextNoteCreate extends React.Component {
     const content = event.target.elements.content.value;
     const notegroup = event.target.elements.notegroup.value
     console.log(title,content);
-    axios.post('http://127.0.0.1:8000/api/TextNotes/', {
+    axios.post(`${API_PATH}api/TextNotes/`, {
       title: title,
       content: content,
       note_group: notegroup,

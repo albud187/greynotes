@@ -25,7 +25,7 @@ class ListNoteTaskCheckbox extends React.Component {
 
   onCheck = (event,listentryID) =>{
     event.preventDefault()
-    axios.put(`http://127.0.0.1:8000/api/ListNoteEntrysAll/${listentryID}/`,{
+    axios.put(`${API_PATH}api/ListNoteEntrysAll/${listentryID}/`,{
       parent_list: this.props.data.parent_list,
       completed: event.target.checked
     })

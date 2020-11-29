@@ -24,7 +24,7 @@ class ArchiveTextNoteCheckbox extends React.Component {
 
   onCheck = (event,noteID) =>{
     event.preventDefault()
-    axios.put(`http://127.0.0.1:8000/api/TextNotes/${noteID}/`,{
+    axios.put(`${API_PATH}api/TextNotes/${noteID}/`,{
       archived: event.target.checked,
       author: this.props.data.author,
       title: this.props.data.title,

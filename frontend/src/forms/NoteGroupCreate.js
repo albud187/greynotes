@@ -12,14 +12,14 @@ class NoteGroupCreate extends Component {
 
   handleFormSubmit = (event)=>{
     const notegroup = event.target.elements.notegroup.value
-    axios.post('http://127.0.0.1:8000/api/NoteGroups/',{
+    axios.post(`${API_PATH}api/NoteGroups/`,{
       group_name:notegroup,
       author:this.state.userid
     })
   }
 
   fetchUserId = () => {
-    axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+    axios.get(`${API_PATH}api/Tokens/${localStorage['token']}/`).then(result=>{
       this.setState({
         userid:result.data.user
       })

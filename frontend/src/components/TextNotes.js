@@ -16,7 +16,7 @@ const TextNotes =(props)=>{
   const ChangeStatus = (event,itemid) =>{
   event.preventDefault()
     console.log('test')
-    axios.get(`http://127.0.0.1:8000/api/TextNotes/${itemid}/`)
+    axios.get(`${API_PATH}api/TextNotes/${itemid}/`)
       .then(res=>{ItemInfo=res.data})
       console.log(ItemInfo)
   }

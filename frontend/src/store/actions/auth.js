@@ -47,7 +47,7 @@ export const checkAuthTimeout = expirationTime => {
 export const authLogin = (username, password) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://127.0.0.1:8000/rest-auth/login/', {
+        axios.post(`${API_PATH}rest-auth/login/`, {
             username: username,
             email:"",
             password: password
@@ -63,7 +63,7 @@ export const authLogin = (username, password) => {
             dispatch(checkAuthTimeout(3600));
             console.log(token)
 
-            axios.get(`http://127.0.0.1:8000/api/Tokens/${token}/`)
+            axios.get(`${API_PATH}api/Tokens/${token}/`)
               .then(result =>{
                 const userid = result.data.user
                 localStorage.setItem('userid', userid);
@@ -79,7 +79,7 @@ export const authLogin = (username, password) => {
 export const authSignup = (username, email, password1, password2) => {
     return dispatch => {
 
-        axios.post('http://127.0.0.1:8000/rest-auth/registration/', {
+        axios.post(`${API_PATH}rest-auth/registration/`, {
             username: username,
             email: email,
             password1: password1,

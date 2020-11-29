@@ -22,7 +22,7 @@ class FilterTextNotes extends Component {
   }
 
   fetchNoteGroups = () => {
-    axios.get("http://127.0.0.1:8000/api/notegroups_by_user?token="+localStorage['token']).then(result => {
+    axios.get(`${API_PATH}api/notegroups_by_user?token=${localStorage['token']}`).then(result => {
       this.setState({
         note_groups: result.data
       });
@@ -31,7 +31,7 @@ class FilterTextNotes extends Component {
   }
 
   fetchUserId = () => {
-    axios.get(`http://127.0.0.1:8000/api/Tokens/${localStorage['token']}/`).then(result=>{
+    axios.get(`${API_PATH}api/Tokens/${localStorage['token']}/`).then(result=>{
       this.setState({
         userid:result.data.user
       })
@@ -48,7 +48,7 @@ class FilterTextNotes extends Component {
     const groupname = event.target.elements.notegroup.value;
     console.log(groupname);
 
-    axios.get('http://127.0.0.1:8000/api/query_list_notes'+
+    axios.get(API_PATH+'api/query_list_notes'+
     '?groupname='+groupname +'&userid='+this.state.userid, {
       groupname: groupname
     })
@@ -59,7 +59,7 @@ class FilterTextNotes extends Component {
     console.log("result is " + this.state.filtered_lists)
   });
 
-    axios.get('http://127.0.0.1:8000/api/query_text_notes'+
+    axios.get(API_PATH+'api/query_text_notes'+
     '?groupname='+groupname+'&userid='+this.state.userid, {
       groupname: groupname
     })
