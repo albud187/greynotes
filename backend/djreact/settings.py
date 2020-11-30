@@ -40,7 +40,7 @@ for item in codes_content_list:
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i6m_c7k13t=b2f%jy3(ytw2q9updlzwn_1s7_($t5_6pw56+e2'
+SECRET_KEY = codes_content_dict['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
