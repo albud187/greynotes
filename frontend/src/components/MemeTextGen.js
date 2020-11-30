@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { Form, Input} from 'antd';
+import { Form } from 'antd';
 import axios from 'axios';
 
 import * as API_PATHS from '../api_path.js'

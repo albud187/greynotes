@@ -4,6 +4,9 @@ django-cors-headers
 six
 django-rest-auth
 django-allauth
+django-crispy-forms
+bootstrap4
+validate_email
 
 react
 react-router-dom

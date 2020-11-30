@@ -1,10 +1,7 @@
 import React from 'react';
 
-import { List, Avatar, Space } from 'antd';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
-import { Row, Col, Divider } from 'antd';
+import { List } from 'antd';
 import { Card } from 'antd';
-import {Checkbox} from 'antd'
 import axios from 'axios'
 import ArchiveTextNoteCheckbox from '../forms/ArchiveTextNoteCheckbox.js'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import {Button, Card} from 'antd'
+import {Button} from 'antd'
 import ListNoteDetailUpdateView from '../forms/ListNoteDetailUpdateView.js'
 
 import * as API_PATHS from '../api_path.js'
