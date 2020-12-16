@@ -27,7 +27,9 @@ class ListNoteTaskCheckbox extends React.Component {
     event.preventDefault()
     axios.put(`${API_PATH}api/ListNoteEntrysAll/${listentryID}/`,{
       parent_list: this.props.data.parent_list,
-      completed: event.target.checked
+      completed: event.target.checked,
+      author:this.props.data.author
+
     })
     this.setState({
       checked: event.target.checked,
@@ -39,6 +41,7 @@ class ListNoteTaskCheckbox extends React.Component {
 
     return (
       <>
+
         <p style={{ marginBottom: '20px' }}>
           <Checkbox
             checked={this.state.checked}
