@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'articles',
     'user_api',
+    'app_sandbox',
 
 
     'django.contrib.sites',
