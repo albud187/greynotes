@@ -3,6 +3,7 @@ from . import views
 
 
 urlpatterns = [
-    path('sandbox/',views.SandboxView.as_view(),name='sandbox'),
+    path('',views.SandboxView.as_view(),name='sandbox'),
+    path('run_function/',views.RunFunctionView.as_view(), name='run_function')
 
 ]

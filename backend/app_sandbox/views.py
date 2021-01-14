@@ -13,10 +13,10 @@ class SandboxView(View):
     def get(self, request):
         return render(request,'app_sandbox/sandbox_base.html')
 
-class RunFunction(View):
+class RunFunctionView(View):
     template_name = 'run_function.html'
-        def get(self, request):
-            return render(request,'app_sandbox/run_function.html')
+    def get(self, request):
+        return render(request,'app_sandbox/run_function.html')
 
 def placeholder_function(request):
     try:
