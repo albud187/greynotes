@@ -2,4 +2,14 @@
 {% block sandbox_block %}
 
 <h1>ADD STUFF HERE </h1>
+
+<script>
+let d = "shrekoning is here"
+console.log(d)
+
+fetch('http://127.0.0.1:8000/api/NoteGroups/')
+.then(response => response.json())
+.then(data=>console.log(data))
+</script>
+
 {% endblock %}
