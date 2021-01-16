@@ -5,13 +5,6 @@
 <ul id="stuff"></ul>
 
 <script>
-let d = "shrekoning is here"
-console.log(d)
-var obj = document.getElementById("stuff");
-fetch('http://127.0.0.1:8000/api/NoteGroups/')
-.then(response => response.json())
-.then(data => obj=data)
-.then(()=>console.log(obj))
 
 function createNode(element) {
     return document.createElement(element);
@@ -27,14 +20,14 @@ const url = 'http://127.0.0.1:8000/api/NoteGroups/';
 fetch(url)
 .then((resp) => resp.json())
 .then(function(data) {
-  let authors = data;
-  console.log("authors are")
-  console.log(authors);
-  return authors.map(function(author) {
-    let li = createNode('slug');
-    let img = createNode('img');
+  let groups = data;
+  console.log("groups are")
+  console.log(groups);
+  return groups.map(function(group) {
+    let li = createNode('li');
+    let img = createNode('h1');
     let span = createNode('span');
-    span.innerHTML = `${author.slug} ${author.author}`;
+    span.innerHTML = `${group.author} / ${group.group_name}`;
     append(li, img);
     append(li, span);
     append(ul, li);
