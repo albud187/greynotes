@@ -6,6 +6,8 @@
 
 <script>
 
+const url = 'http://127.0.0.1:8000/api/NoteGroups/';
+
 function createNode(element) {
     return document.createElement(element);
 }
@@ -15,7 +17,6 @@ function append(parent, el) {
 }
 
 const ul = document.getElementById('stuff');
-const url = 'http://127.0.0.1:8000/api/NoteGroups/';
 
 fetch(url)
 .then((resp) => resp.json())
